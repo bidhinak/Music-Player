@@ -1,0 +1,48 @@
+{% extends 'userstemplate/userbase.html' %}
+{% block content %}
+
+
+
+<table class="table"  style="background-color:lightblue;width:100%;">
+    <thead class="table table-striped" style="font-size:20px;">
+    <tr>
+        <th scope="col">NO</th>
+        <th scope="col">SONG </th>
+<!--        <th scope="col">Artist</th>-->
+        <th scope="col">MOVIE</th>
+<!--        <th scope="col"> SINGERS</th>-->
+        <th scope="col">PLAY</th>
+<!--        <th scope="col">artist</th>-->
+
+
+
+
+
+    </tr>
+    </thead>
+   <tbody style="background-color:lightblue;font-size:20px;">
+   {% for i  in view %}
+
+
+
+    <tr style="height:25px;">
+
+         <td>{{forloop.counter}}</td>
+        <td>{{ i.song_name}} </td>
+        <td>{{ i.song_movie}}</td>
+<!--        <td>{{ i.song_singers }}</td>-->
+<!--         <td>{{i.song}}  </td>-->
+        <td> <a href=" {% url 'usersongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
+
+<!--        <td>{{ i.song_artist }}</td>-->
+<!--        <td>{{j.artist_name }}</td>-->
+
+
+    </tr>
+
+   {% endfor %}
+    </tbody>
+</table>
+   {% endblock %}
+
+

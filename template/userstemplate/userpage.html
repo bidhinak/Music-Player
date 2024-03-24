@@ -1,0 +1,30 @@
+{% extends 'userstemplate/userbase.html' %}
+{% block content %}
+
+      <div class="row" style="display:flex;flex-direction:row;gap:15px;margin-left:5px;">
+
+     {% for i in viewpage %}
+
+       <div class="card" style="width: 15rem;height:350px;background-color:rgba(27, 53, 86, 0.703);">
+
+
+
+                <img src="{{i.artist_image.url}}" style="width:248px;height:180px;border-radius:30px;padding:5px;"><br><br>
+              <div class="card-body">
+                 <h2 class="card-title" style="color:white;margin-left:5px;">  {{i.artist_name}}</h2><br>
+                  <h4 style="color:white;margin-left:10px;">Artist</h4>
+
+              <h2 style="margin-left:150px;font-size:50px;color:aqua;">
+                 <a href=" {% url 'userssongsview' i.id %} " >
+                 <i class="fa-solid fa-circle-play"></i></a>
+              </h2>
+              </div>
+
+       </div>
+
+
+      {% endfor %}
+
+
+      </div>
+{% endblock %}

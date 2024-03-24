@@ -1,0 +1,42 @@
+{% extends 'artisttemplate/artistbase.html' %}
+{% block content %}
+
+<div class="row" style="display:flex;flex-direction:row;gap:10px;margin-left:5px;">
+
+    {% for i in show %}
+
+                  {% if i.song_artist.two != request.user %}
+
+       <div class="card" style="width: 20rem;height:380px;background-color:rgba(27, 53, 86, 0.703);"">
+
+
+
+                   <img src="{{i.song_image.url}}" style="width:248px;height:160px;"><br>
+              <div class="card-body">
+                   <h1 class="card-title" style="color:aqua;">{{ i.song_name }}</h1><br>
+                   <h3 class="card-title" style="color:aqua;">{{ i.song_movie }}</h3><br>
+
+                   <h4 class="card-title" style="color:white;">{{i.song_artist}}</h4><br>
+                  <h4 class="card-title" style="color:white;">Singers: {{i.song_singers}}</h4><br>
+<!--              <h1>{{request.user }}</h1>-->
+<!--               <h1>{{i.song_artist.two}}</h1>-->
+                          <audio controls>
+                           <source src="{% if i.song %}{{ i.song.url }}{% else %}{{i.song.link}}{%endif%}" type="audio/mp3">
+                          </audio>
+
+
+               </div>
+
+        </div>
+{% endif %}
+
+    {% endfor %}
+
+</div>
+
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends 'admintemplate/adminbase.html' %}
+{% block content %}
+
+
+
+<table class="table"  style="background:aqua;width:100%;">
+<thead class="table table-striped">
+<tr>
+        <th scope="col">NO</th>
+        <th scope="col">SONG NAME</th>
+        <th scope="col">SONG MOVIE</th>
+        <th scope="col"> SONG</th>
+        <th scope="col">PLAY</th>
+        <th scope="col">DELETE</th>
+
+
+
+
+
+    </tr>
+</thead>
+   <tbody style="gap:200px;">
+
+        {% for i in view %}
+    <tr>
+         <td>{{forloop.counter}}</td>
+         <td>{{ i.song_name}} </td>
+        <td>{{i.song_movie}}</td>
+         <td>{{i.song}}  </td>
+
+        <td> <a href=" {% url 'adminsongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
+         <td>
+             <form action="{% url 'songdelete' i.id %}" method="POST" >
+            {% csrf_token %}<button type="submit" style="background-color:red;">Delete</button>
+            </form>
+             </td>
+
+
+    </tr>
+       {% endfor %}
+    </tbody>
+</table>
+   {% endblock %}
+
+
