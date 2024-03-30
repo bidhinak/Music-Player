@@ -5,13 +5,13 @@
 
     {% for i in show %}
 
-                  {% if i.song_artist.two != request.user %}
+                  {% if i.song_artist.name.two != request.user %}
 
-       <div class="card" style="width: 20rem;height:380px;background-color:rgba(27, 53, 86, 0.703);"">
+       <div class="card" style="width: 20rem;height:70%;background-color:rgba(27, 53, 86, 0.703);">
 
 
 
-                   <img src="{{i.song_image.url}}" style="width:248px;height:160px;"><br>
+                   <img src="{{i.song_image.url}}" style="width:100%;height:160px;"><br>
               <div class="card-body">
                    <h1 class="card-title" style="color:aqua;">{{ i.song_name }}</h1><br>
                    <h3 class="card-title" style="color:aqua;">{{ i.song_movie }}</h3><br>

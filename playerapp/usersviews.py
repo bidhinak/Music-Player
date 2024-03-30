@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 
 from playerapp.forms import Customform, Usersform
-from playerapp.models import Users, songadd, Artist_add
+from playerapp.models import Users, songadd, notification, Artist_add
 
 
 def userssignup(request):
@@ -23,13 +23,15 @@ def userssignup(request):
 
 
 def userpage(request):
-    viewpage = Artist_add.objects.all()
-    return render(request, 'userstemplate/userpage.html', {"viewpage": viewpage})
+    view=Artist_add.objects.all()
+    return render(request, 'userstemplate/userpage.html', {"view":view})
 
 
 def userssongsview(request, id):
-    uview = songadd.objects.filter(Artist_table=id)
-    # print(uview)
+    # v=Artist_Table.objects.filter(artist_name=id)
+
+    uview = songadd.objects.filter(song_artist=id)
+
     return render(request, 'userstemplate/usersongsview.html', {"view": uview})
 
 
@@ -49,3 +51,7 @@ def userprofile(request):
     prof = Users.objects.get(one=u)
     # print(prof)
     return render(request, 'userstemplate/userprofile.html', {"prof": prof})
+
+def usernotview(request):
+    view=notification.objects.all()
+    return render(request,'userstemplate/usernotview.html',{"view":view})

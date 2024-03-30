@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import DO_NOTHING
 
 
 # Create your models here.
@@ -18,6 +19,7 @@ class Users(models.Model):
 class Artist_Table(models.Model):
     two = models.ForeignKey(Login, on_delete=models.CASCADE)
     artist_name = models.CharField(max_length=30)
+    artist_image = models.ImageField(upload_to="images/")
     phone_no = models.CharField(max_length=10)
     email = models.EmailField()
 
@@ -25,16 +27,24 @@ class Artist_Table(models.Model):
         return self.artist_name
 
 
-#
+class Artist_add(models.Model):
+    name = models.ForeignKey(Artist_Table, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="artistimage/")
+
+    def __str__(self):
+        return str(self.name)
+
+
 class songadd(models.Model):
     song_name = models.CharField(max_length=30)
-    song_artist = models.ForeignKey(Artist_Table, on_delete=models.CASCADE)
+    song_artist = models.ForeignKey(Artist_add, on_delete=models.CASCADE)
     song_singers = models.CharField(max_length=50)
     song_movie = models.CharField(max_length=30)
     song_image = models.ImageField(upload_to="images/")
     song = models.FileField(upload_to="songs/")
 
 
-class Artist_add(models.Model):
-    artist_image = models.ImageField(upload_to="images/")
-    artist_name = models.ForeignKey(Artist_Table, on_delete=models.CASCADE)
+class notification(models.Model):
+    date = models.DateField(auto_now=True)
+    user = models.ForeignKey(Login, on_delete=DO_NOTHING)
+    description = models.TextField()

@@ -41,11 +41,11 @@
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
                 <li>
-                    <a class="active" href=" {% static 'staticsecond/' %} "><span class="icon home" aria-hidden="true"></span>Home</a>
+                    <a class="active" href=" {% url 'adminviewartist' %} "><span class="icon home" aria-hidden="true"></span>Home</a>
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span class="icon document" aria-hidden="true"></span>Add Artists
+                        <span class="icon document" aria-hidden="true"></span> Artists
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -53,10 +53,10 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href=" {% url 'adminaddartist' %} ">Add Artists</a>
+                            <a href="{% url 'adminartistadd' %}">Add </a>
                         </li>
                         <li>
-                            <a href=" {% url 'adminviewartist' %} ">View Artists</a>
+                            <a href="{% url 'adminartistlist' %}">To the list</a>
                         </li>
                     </ul>
                 </li>
@@ -109,11 +109,11 @@
                     </ul>
                 </li>
                 <li>
-                    <a href=" {% static 'staticsecond/comments.html' %} ">
+                    <a href=" {% url 'adminnotview' %} ">
                         <span class="icon message" aria-hidden="true"></span>
-                        Comments
+                        Notifications
                     </a>
-                    <span class="msg-counter">7</span>
+                    <span class="msg-counter"><i class="fa-solid fa-bell"></i></span>
                 </li>
             </ul>
 <!--            <span class="system-menu__title">system</span>-->

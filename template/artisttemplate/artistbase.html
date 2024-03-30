@@ -75,23 +75,23 @@
                         </li>
                     </ul>
                 </li>
-<!--                <li>-->
-<!--                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">-->
-<!--                        <span class="icon image" aria-hidden="true"></span>Media-->
-<!--                        <span class="category__btn transparent-btn" title="Open list">-->
-<!--                            <span class="sr-only">Open list</span>-->
-<!--                            <span class="icon arrow-down" aria-hidden="true"></span>-->
-<!--                        </span>-->
-<!--                    </a>-->
-<!--                    <ul class="cat-sub-menu">-->
-<!--                        <li>-->
-<!--                            <a href=" {% static 'staticsecond/media-01.html' %} ">Media-01</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href=" {% static 'staticsecond/media-02.html' %} ">Media-02</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+                <li>
+                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
+                        <span class="icon image" aria-hidden="true"></span>Notification
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href=" {% url 'notadd' %} ">Add</a>
+                        </li>
+                        <li>
+                            <a href=" {% url 'notview' %} ">View</a>
+                        </li>
+                    </ul>
+                </li>
 <!--                <li>-->
 <!--                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">-->
 <!--                        <span class="icon paper" aria-hidden="true"></span>Pages-->
@@ -109,6 +109,7 @@
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </li>-->
+
                 <li>
                     <a href=" {% static 'staticsecond/comments.html' %} ">
                         <span class="icon message" aria-hidden="true"></span>

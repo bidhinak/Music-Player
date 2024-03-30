@@ -1,0 +1,47 @@
+{% extends 'admintemplate/adminbase.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<table class="table" style="background-color: rgba(27, 53, 86, 0.703);width:100%;color:white;">
+    <thead class="table table-striped" style="font-size:15px;">
+    <tr>
+        <th scope="col">NO</th>
+        <th scope="col">ARTIST NAME</th>
+        <th scope="col">IMAGE</th>
+        <th scope="col">PHONE NUMBER</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">DELETE FROM LIST</th>
+
+
+
+
+         </tr>
+   </thead>
+<tbody >
+{% for i in view %}
+<tr >
+        <td> {{forloop.counter}}</td>
+        <td> {{i.artist_name}} </td>
+    <td><img src="{{i.artist_image.url}}" width="110px" height="130px"/> </td>
+       <td>{{i.phone_no}}</td>
+    <td>{{i.email}}</td>
+    <td>
+        <form action="{% url 'adminartistdelete' i.id  %}" method="POST">
+            {% csrf_token %}
+            <button style="height:30px;width:100px;" class="btn btn-outline-dark">Delete</button>
+        </form>
+    </td>
+
+
+
+
+
+
+{% endfor %}
+
+
+
+</tr>
+
+</tbody>
+</table>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from playerapp.models import Login, Users, Artist_Table, songadd, Artist_add
+from playerapp.models import Login, Users, Artist_Table, songadd, notification, Artist_add
 
 
 class Customform(UserCreationForm):
@@ -21,9 +21,6 @@ class Usersform(forms.ModelForm):
         exclude = ("one",)
 
 
-
-
-
 class Artistform(forms.ModelForm):
     class Meta:
         model = Artist_Table
@@ -37,7 +34,13 @@ class songaddform(forms.ModelForm):
         fields = "__all__"
 
 
-class artistaddform(forms.ModelForm):
+class notificationform(forms.ModelForm):
     class Meta:
-        model = Artist_add
-        fields = "__all__"
+        model = notification
+        fields = ('description',)
+
+
+class artist_addform(forms.ModelForm):
+    class Meta:
+        model=Artist_add
+        fields="__all__"

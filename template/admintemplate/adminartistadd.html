@@ -1,0 +1,15 @@
+{% extends 'admintemplate/adminbase.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="card" style="background-color: rgba(27, 53, 86, 0.703);width:100%;padding:40px;color:red;text-align:center;">
+    <h1 style="color:white;">ADD NEW ARTIST</h1><br>
+            <form method="POST"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{add|crispy}}
+
+                <br><br><input class="btn btn-outline-dark" type="submit" value="Add new Artist">
+            </form>
+    </div>
+
+
+{% endblock %}

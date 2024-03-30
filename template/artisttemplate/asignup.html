@@ -160,7 +160,7 @@ width:300px;
 <body>
   <div class="wrapper">
      <h2>Signup</h2>
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
          {% csrf_token %}
       <div class="demo">
          {{signup1|crispy}}

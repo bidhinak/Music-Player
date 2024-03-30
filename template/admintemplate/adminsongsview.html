@@ -11,6 +11,7 @@
         <th scope="col">SONG MOVIE</th>
         <th scope="col"> SONG</th>
         <th scope="col">PLAY</th>
+    <th scope="col">artist</th>
         <th scope="col">DELETE</th>
 
 
@@ -29,6 +30,7 @@
          <td>{{i.song}}  </td>
 
         <td> <a href=" {% url 'adminsongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
+        <td>{{i.song_artist}}</td>
          <td>
              <form action="{% url 'songdelete' i.id %}" method="POST" >
             {% csrf_token %}<button type="submit" style="background-color:red;">Delete</button>

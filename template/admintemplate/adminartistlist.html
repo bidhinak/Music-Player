@@ -1,0 +1,32 @@
+{% extends 'admintemplate/adminbase.html' %}
+{% block content %}
+
+
+
+ <div class="row" style="display:flex;flex-direction:row;gap:15px;margin-left:5px;">
+     {% for i in show %}
+  <div class="card" style="width: 14rem;background-color: rgba(27, 53, 86, 0.703);height:200%;;">
+
+
+    <img src="{{i.image.url}}" style="width:218px;height:180px;border-radius:30px;padding:10px;"><br><br>
+  <div class="card-body">
+            <h2 class="card-title" style="color:lightblue;margin-left:29px;">  {{i.name}}</h2><br>
+
+           <h2 style="margin-left:29px;font-size:50px;color:aqua;">
+               <a href=" {% url 'adminsongsview' i.id %} " >
+               <i class="fa-solid fa-circle-play"></i></a>
+           </h2>
+      <form action="{% url 'artistlistdelete' i.id %}" method="POST" >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark">Delete</button>
+            </form>
+
+
+        </div>
+
+    </div>
+      {% endfor %}
+
+</div>
+{% endblock %}
+<script src="https://kit.fontawesome.com/fbff9b201f.js" crossorigin="anonymous"></script>

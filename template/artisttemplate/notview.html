@@ -1,0 +1,41 @@
+{% extends 'artisttemplate/artistbase.html' %}
+{% block content %}
+{% for message in messages %}
+                <div class="alert alert-danger d-flex align-items-center" style="color:white;background:red; " role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+<table class="table" style="width:100%;background:rgba(27, 53, 86, 0.703);color:white;">
+    <thead class="table table-striped" style="font-size:20px;">
+    <tr>
+        <th scope="col">NO</th>
+        <th scope="col">DATE</th>
+        <th scope="col">ARTIST</th>
+        <th scope="col">NOTIFICATION</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+
+
+    </tr>
+    </thead>
+   <tbody>
+
+        {% for i in view %}
+    <tr>
+         <td>{{forloop.counter}}</td>
+         <td>{{ i.date}} </td>
+         <td>{{i.user}}  </td>
+        <td>{{i.description}}</td>
+        <td><button style="background:white;color:black;width:65px;height:20px;"><a  href="{% url 'notupdate' i.id %}">Update</a></button></td>
+
+                  <td><form action="{% url 'notdelete' i.id %}" method="POST" >
+                    {% csrf_token %}<button type="submit" style="width:65px;height:20px;background-color:grey;">Delete</button>
+                   </form></td>
+
+
+    </tr>
+
+       {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
