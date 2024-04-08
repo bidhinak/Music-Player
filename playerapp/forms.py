@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from playerapp.models import Login, Users, Artist_Table, songadd, notification, Artist_add
+from playerapp.models import Login, Users, Artist_Table, songadd, notification, Artist_add, playlist, playlistadd
 
 
 class Customform(UserCreationForm):
@@ -42,5 +42,25 @@ class notificationform(forms.ModelForm):
 
 class artist_addform(forms.ModelForm):
     class Meta:
-        model=Artist_add
-        fields="__all__"
+        model = Artist_add
+        fields = "__all__"
+
+
+class playlistform(forms.ModelForm):
+    class Meta:
+        model = playlist
+        fields = "__all__"
+        exclude=('user',)
+
+
+class playlistaddform(forms.ModelForm):
+    class Meta:
+        model = playlistadd
+        fields = "__all__"
+        exclude = ('song1','user')
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['playlist_name'].queryset = playlistadd.objects.filter(user=user)

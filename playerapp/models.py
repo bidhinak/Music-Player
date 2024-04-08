@@ -1,3 +1,5 @@
+from email.policy import default
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import DO_NOTHING
@@ -38,13 +40,31 @@ class Artist_add(models.Model):
 class songadd(models.Model):
     song_name = models.CharField(max_length=30)
     song_artist = models.ForeignKey(Artist_add, on_delete=models.CASCADE)
-    song_singers = models.CharField(max_length=50)
-    song_movie = models.CharField(max_length=30)
+    song_singers = models.CharField(max_length=100)
+    song_movie = models.CharField(max_length=50, null=True, blank=True)
     song_image = models.ImageField(upload_to="images/")
     song = models.FileField(upload_to="songs/")
+
+    def __str__(self):
+        return self.song_name
 
 
 class notification(models.Model):
     date = models.DateField(auto_now=True)
     user = models.ForeignKey(Login, on_delete=DO_NOTHING)
     description = models.TextField()
+
+
+class playlist(models.Model):
+    user=models.ForeignKey(Login,on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="playlist/", default="playlist/default.png", blank=True)
+
+    def __str__(self):
+        return str(self.name)
+
+
+class playlistadd(models.Model):
+    user=models.ForeignKey(Login,on_delete=models.CASCADE)
+    song1 = models.ForeignKey(songadd,on_delete=models.CASCADE)
+    playlist_name = models.ForeignKey(playlist, on_delete=models.CASCADE)

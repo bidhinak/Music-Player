@@ -74,23 +74,26 @@
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </li>-->
-<!--                <li>-->
-<!--                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">-->
-<!--                        <span class="icon image" aria-hidden="true"></span>Media-->
-<!--                        <span class="category__btn transparent-btn" title="Open list">-->
-<!--                            <span class="sr-only">Open list</span>-->
-<!--                            <span class="icon arrow-down" aria-hidden="true"></span>-->
-<!--                        </span>-->
-<!--                    </a>-->
-<!--                    <ul class="cat-sub-menu">-->
+                <li>
+                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
+                        <span class="icon image" aria-hidden="true"></span>Playlist
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href=" {% url 'userplaylistcreate' %} ">Create</a>
+                        </li>
+                        <li>
+                            <a href=" {% url 'userplaylistview' %} ">View</a>
+                        </li>
 <!--                        <li>-->
-<!--                            <a href=" {% static 'staticsecond/media-01.html' %} ">Media-01</a>-->
+<!--                            <a href="# ">Add</a>-->
 <!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href=" {% static 'staticsecond/media-02.html' %} ">Media-02</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+                    </ul>
+                </li>
 <!--                <li>-->
 <!--                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">-->
 <!--                        <span class="icon paper" aria-hidden="true"></span>Pages-->
@@ -108,13 +111,13 @@
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </li>-->
-                <li>
-                    <a href=" {% url 'usernotview' %} ">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Notifications
-                    </a>
-                    <span class="msg-counter"><i class="fa-solid fa-bell"></i></span>
-                </li>
+<!--                <li>-->
+<!--                    <a href=" {% url 'usernotview' %} ">-->
+<!--                        <span class="icon message" aria-hidden="true"></span>-->
+<!--                        Notifications-->
+<!--                    </a>-->
+<!--                    <span class="msg-counter"><i class="fa-solid fa-bell"></i></span>-->
+<!--                </li>-->
             </ul>
 <!--            <span class="system-menu__title">system</span>-->
 <!--            <ul class="sidebar-body-menu">-->
@@ -180,7 +183,7 @@
     <div class="main-nav-start">
       <div class="search-wrapper">
         <i data-feather="search" aria-hidden="true"></i>
-        <input type="text" placeholder="Enter keywords ..." required>
+        <input type="text"  style="width:700px;" placeholder="Search songs here ..." required>
       </div>
     </div>
     <div class="main-nav-end">
@@ -204,11 +207,11 @@
         <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
         <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
       </button>
-<!--      <div class="notification-wrapper">-->
-<!--        <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">-->
-<!--          <span class="sr-only">To messages</span>-->
-<!--          <span class="icon notification active" aria-hidden="true"></span>-->
-<!--        </button>-->
+      <div class="notification-wrapper">
+        <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
+       <a href=" {% url 'usernotview' %} ">
+           <span class="icon notification active" aria-hidden="true"></span></a>
+        </button>
 <!--        <ul class="users-item-dropdown notification-dropdown dropdown">-->
 <!--          <li>-->
 <!--            <a href=" {% static 'staticsecond/##' %} ">-->
@@ -249,7 +252,7 @@
 <!--            <a class="link-to-page" href=" {% static 'staticsecond/##' %} ">Go to Notifications page</a>-->
 <!--          </li>-->
 <!--        </ul>-->
-<!--      </div>-->
+      </div>
       <div class="nav-user-wrapper">
         <button href=" {% static 'staticsecond/##' %} " class="nav-user-btn dropdown-btn" title="My profile" type="button">
           <span class="sr-only">My profile</span>

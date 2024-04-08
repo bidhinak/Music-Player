@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from playerapp.forms import Artistform, artist_addform
@@ -12,6 +13,19 @@ def adminartistadd(request):
             add.save()
             return redirect('adminartistlist')
     return render(request, 'admintemplate/adminartistadd.html', {"add": add})
+
+
+
+
+
+# def adminartistadd(request):
+#     add = artist_addform()
+#     if request.method == 'POST':
+#         add = artist_addform(request.POST, request.FILES)
+#         if add.is_valid():
+#             add.save()
+#             return redirect('adminartistlist')
+#     return render(request, 'admintemplate/adminartistadd.html', {"add": add})
 
 
 def adminartistlist(request):

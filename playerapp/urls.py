@@ -20,8 +20,8 @@ urlpatterns = [
     path("songupdate/<int:id>/", artistviews.songupdate, name="songupdate"),
     # admin artist add section
     path("adminartistadd", adminviews.adminartistadd, name="adminartistadd"),
-    path("adminartistlist",adminviews.adminartistlist,name="adminartistlist"),
-    path("artistlistdelete/<int:id>/",adminviews.artistlistdelete,name="artistlistdelete"),
+    path("adminartistlist", adminviews.adminartistlist, name="adminartistlist"),
+    path("artistlistdelete/<int:id>/", adminviews.artistlistdelete, name="artistlistdelete"),
     path("adminviewartist", adminviews.adminviewartist, name="adminviewartist"),
     path("adminartistdelete/<int:id>/", adminviews.adminartistdelete, name="adminartistdelete"),
     # adminsongview
@@ -41,6 +41,13 @@ urlpatterns = [
     path("notview", artistviews.notview, name="notview"),
     path("notupdate/<int:id>/", artistviews.notupdate, name="notupdate"),
     path("notdelete/<int:id>/", artistviews.notdelete, name="notdelete"),
-    path("usernotview",usersviews.usernotview,name="usernotview"),
-    path("adminnotview",adminviews.adminnotview,name="adminnotview")
+    path("usernotview", usersviews.usernotview, name="usernotview"),
+    path("adminnotview", adminviews.adminnotview, name="adminnotview"),
+    # userplaylist
+    path("userplaylistcreate", usersviews.userplaylistcreate, name="userplaylistcreate"),
+    path("userplaylistview", usersviews.userplaylistview, name="userplaylistview"),
+    path("userplaylistdelete/<int:id>/", usersviews.userplaylistdelete, name="userplaylistdelete"),
+    path("userplaylistadd/<int:id>/", usersviews.userplaylistadd, name="userplaylistadd"),
+    path("userplaylistsongsview/<int:id>/", usersviews.userplaylistsongsview, name="userplaylistsongsview"),
+    path("playlistsongdelete/<int:id>/",usersviews.playlistsongdelete,name="playlistsongdelete")
 ]

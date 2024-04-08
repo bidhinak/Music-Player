@@ -1,0 +1,21 @@
+{% extends 'userstemplate/userbase.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:600px;">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h1 style="font-style:bold;color:white;text-align:center;">CREATE YOUR OWN PLAYLIST</h1><br>
+        </div><hr><br>
+        <div class="col">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    {{create|crispy}}
+                </div>
+                <br><input type="submit" class="btn btn-dark btn-block" value="create"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

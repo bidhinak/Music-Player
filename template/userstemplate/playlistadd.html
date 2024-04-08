@@ -1,0 +1,24 @@
+{% extends 'userstemplate/userbase.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:200px;">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h1 style="font-style:bold;color:white;text-align:center;">ADD TO PLAYLIST</h1><br>
+        </div><hr><br>
+        <div class="col">
+            <form method="POST" >
+                {% csrf_token %}
+                {{add|crispy}}
+                <br><input type="submit" class="btn btn-dark btn-block" value="Add"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% for message in messages %}
+                <div class="alert alert-success d-flex align-items-center" style="color:white;background:green; " role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+{% endblock %}

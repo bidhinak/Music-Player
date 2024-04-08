@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'playerapp',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'bootstrap5',
 ]
 
 AUTH_USER_MODEL = 'playerapp.Login'

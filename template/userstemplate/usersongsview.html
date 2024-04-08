@@ -12,7 +12,7 @@
         <th scope="col">MOVIE</th>
 <!--        <th scope="col"> SINGERS</th>-->
         <th scope="col">PLAY</th>
-<!--        <th scope="col">artist</th>-->
+        <th scope="col">ADD</th>
 
 
 
@@ -33,7 +33,7 @@
 <!--        <td>{{ i.song_singers }}</td>-->
 <!--         <td>{{i.song}}  </td>-->
         <td> <a href=" {% url 'usersongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
-
+      <td><a href="{% url 'userplaylistadd' i.id %}" class="btn btn-outline-dark">Add to your playlist</a></td>
 <!--        <td>{{ i.song_artist }}</td>-->
 <!--        <td>{{j.artist_name }}</td>-->
 

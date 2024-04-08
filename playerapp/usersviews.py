@@ -1,8 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 
-from playerapp.forms import Customform, Usersform
-from playerapp.models import Users, songadd, notification, Artist_add
+from playerapp.forms import Customform, Usersform, playlistform, playlistaddform, songaddform
+from playerapp.models import Users, songadd, notification, Artist_add, playlist, playlistadd
 
 
 def userssignup(request):
@@ -23,13 +24,11 @@ def userssignup(request):
 
 
 def userpage(request):
-    view=Artist_add.objects.all()
-    return render(request, 'userstemplate/userpage.html', {"view":view})
+    view = Artist_add.objects.all()
+    return render(request, 'userstemplate/userpage.html', {"view": view})
 
 
 def userssongsview(request, id):
-    # v=Artist_Table.objects.filter(artist_name=id)
-
     uview = songadd.objects.filter(song_artist=id)
 
     return render(request, 'userstemplate/usersongsview.html', {"view": uview})
@@ -52,6 +51,61 @@ def userprofile(request):
     # print(prof)
     return render(request, 'userstemplate/userprofile.html', {"prof": prof})
 
+
 def usernotview(request):
-    view=notification.objects.all()
-    return render(request,'userstemplate/usernotview.html',{"view":view})
+    view = notification.objects.all()
+    return render(request, 'userstemplate/usernotview.html', {"view": view})
+
+
+def userplaylistcreate(request):
+    create = playlistform()
+    u = request.user
+    if request.method == 'POST':
+        create = playlistform(request.POST, request.FILES)
+        if create.is_valid():
+            data = create.save(commit=False)
+            data.user = u
+            create.save()
+            return redirect('userplaylistview')
+    return render(request, 'userstemplate/playlistcreate.html', {"create": create})
+
+
+def userplaylistview(request):
+    u = request.user
+    view = playlist.objects.filter(user=u)
+    return render(request, 'userstemplate/playlistview.html', {"view": view})
+
+
+def userplaylistdelete(request, id):
+    delt = playlist.objects.get(id=id)
+    delt.delete()
+    return redirect('userplaylistview')
+
+
+def userplaylistadd(request, id):
+    data = songadd.objects.get(id=id)
+    u = request.user
+    print(u)
+    z = playlist.objects.filter(user=u)
+    print(z)
+    add = playlistaddform()
+    if request.method == 'POST':
+        add= playlistaddform(request.POST)
+        if add.is_valid():
+            v = add.save(commit=False)
+            v.song1 = data
+            add.save()
+            messages.info(request, 'Song added successfully')
+
+    return render(request, 'userstemplate/playlistadd.html', {"add": add})
+
+
+def userplaylistsongsview(request, id):
+    view = playlistadd.objects.filter(playlist_name=id)
+    return render(request, 'userstemplate/playlistsongsview.html', {"view": view})
+
+
+def playlistsongdelete(request, id):
+    delt = playlistadd.objects.get(id=id)
+    delt.delete()
+    return redirect('userplaylistview')

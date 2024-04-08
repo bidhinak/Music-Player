@@ -1,5 +1,6 @@
 {% extends 'artisttemplate/artistbase.html' %}
 {% block content %}
+{% load bootstrap5 %}
 
 <div class="row" style="display:flex;flex-direction:row;gap:10px;margin-left:5px;">
 
@@ -30,8 +31,13 @@
                           <a href="{% url 'songupdate' i.id %}">
                               <button style="width:65px;height:30px;background-color:green;" >UPDATE</button></a>
                   <form action="{% url 'songdelete' i.id %}" method="POST" >
-                    {% csrf_token %}<button type="submit" style="width:65px;height:30px;background-color:red;">DELETE</button>
+                    {% csrf_token %}<button type="submit" style="width:65px;height:30px;background-color:red;" data-bs-target="#staticBackdrop">DELETE</button>
+
+
                    </form>
+
+
+
                            </div>
                </div>
 
