@@ -41,7 +41,6 @@ class songadd(models.Model):
     song_name = models.CharField(max_length=30)
     song_artist = models.ForeignKey(Artist_add, on_delete=models.CASCADE)
     song_singers = models.CharField(max_length=100)
-    song_movie = models.CharField(max_length=50, null=True, blank=True)
     song_image = models.ImageField(upload_to="images/")
     song = models.FileField(upload_to="songs/")
 
@@ -65,6 +64,21 @@ class playlist(models.Model):
 
 
 class playlistadd(models.Model):
-    user=models.ForeignKey(Login,on_delete=models.CASCADE)
     song1 = models.ForeignKey(songadd,on_delete=models.CASCADE)
     playlist_name = models.ForeignKey(playlist, on_delete=models.CASCADE)
+
+class movieplaylist(models.Model):
+    artist=models.ForeignKey(Login,on_delete=models.CASCADE)
+    movie_name=models.CharField(max_length=150)
+    movie_image=models.ImageField(upload_to="movies/")
+
+    def __str__(self):
+        return str(self.movie_name)
+
+class movieplaylistadd(models.Model):
+    song2=models.ForeignKey(songadd,on_delete=models.CASCADE)
+    mplaylist_name=models.ForeignKey(movieplaylist,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.song2)
+

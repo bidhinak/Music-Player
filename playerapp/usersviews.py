@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 
 from playerapp.forms import Customform, Usersform, playlistform, playlistaddform, songaddform
-from playerapp.models import Users, songadd, notification, Artist_add, playlist, playlistadd
+from playerapp.models import Users, songadd, notification, Artist_add, playlist, playlistadd, movieplaylist, \
+    movieplaylistadd
 
 
 def userssignup(request):
@@ -41,7 +42,8 @@ def usersongplay(request, id):
 
 
 def playbymovies(request):
-    return render(request, 'userstemplate/playbymovies.html')
+    view=movieplaylist.objects.all()
+    return render(request, 'userstemplate/playbymovies.html',{"view":view})
 
 
 def userprofile(request):
@@ -102,10 +104,27 @@ def userplaylistadd(request, id):
 
 def userplaylistsongsview(request, id):
     view = playlistadd.objects.filter(playlist_name=id)
+    print(view)
     return render(request, 'userstemplate/playlistsongsview.html', {"view": view})
+
+def userplaylistsongplay(request,id):
+    # view=playlistadd.objects.filter(song1=id)
+    # print(view)
+    play=playlistadd.objects.filter(id=id)
+    print(play)
+    return render(request,'userstemplate/userplaylistsongplay.html',{"play":play})
 
 
 def playlistsongdelete(request, id):
     delt = playlistadd.objects.get(id=id)
     delt.delete()
     return redirect('userplaylistview')
+def usersmplaylist(request,id):
+    view=movieplaylistadd.objects.filter(mplaylist_name=id)
+    return render(request,'userstemplate/usersmplaylist.html',{"view":view})
+
+def usermsongplay(request,id):
+
+    play=movieplaylistadd.objects.filter(id=id)
+    # print(play)
+    return render(request,'userstemplate/usermsongplay.html',{"play":play})

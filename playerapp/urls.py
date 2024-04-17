@@ -49,5 +49,17 @@ urlpatterns = [
     path("userplaylistdelete/<int:id>/", usersviews.userplaylistdelete, name="userplaylistdelete"),
     path("userplaylistadd/<int:id>/", usersviews.userplaylistadd, name="userplaylistadd"),
     path("userplaylistsongsview/<int:id>/", usersviews.userplaylistsongsview, name="userplaylistsongsview"),
-    path("playlistsongdelete/<int:id>/",usersviews.playlistsongdelete,name="playlistsongdelete")
+    path("userplaylistsongplay/<int:id>/",usersviews.userplaylistsongplay,name="userplaylistsongplay"),
+    path("playlistsongdelete/<int:id>/",usersviews.playlistsongdelete,name="playlistsongdelete"),
+    # artistmovieplaylist
+    path("movieplaylistcreate",artistviews.movieplaylistcreate,name="movieplaylistcreate"),
+    path("movieplaylistview",artistviews.movieplaylistview,name="movieplaylistview"),
+    path("movieplaylistdelete/<int:id>/",artistviews.movieplaylistdelete,name="movieplaylistdelete"),
+    path("songaddtomplaylist/<int:id>/",artistviews.songaddtomplaylist,name="songaddtomplaylist"),
+    path("mplaylistsongsview/<int:id>/",artistviews.mplaylistsongsview,name="mplaylistsongsview"),
+    path("mplaylistsongdelete/<int:id>/",artistviews.mplaylistsongdelete,name="mplaylistsongdelete"),
+    path("artistmsongplay/<int:id>/",artistviews.artistmsongplay,name="artistmsongplay"),
+    # user movie playlist
+    path("usersmplaylist/<int:id>/",usersviews.usersmplaylist,name="usersmplaylist"),
+    path("usermsongplay/<int:id>/",usersviews.usermsongplay,name="usermsongplay")
 ]

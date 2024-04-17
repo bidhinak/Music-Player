@@ -1,0 +1,25 @@
+{% extends 'artisttemplate/artistbase.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:250px;">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h1 style="font-style:bold;color:white;text-align:center;">ADD TO YOUR MOVIE PLAYLIST</h1><br>
+        </div><hr><br>
+        <div class="col">
+            <form method="POST" >
+                {% csrf_token %}
+                <h4 style="color:lightblue;">Select Movie Name</h4><br><br>
+                {{add|crispy}}
+                <br><input type="submit" class="btn btn-dark btn-block" value="Add"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% for message in messages %}
+                <div class="alert alert-success d-flex align-items-center" style="color:white;background:green; " role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+{% endblock %}

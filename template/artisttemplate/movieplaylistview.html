@@ -1,0 +1,27 @@
+{% extends 'artisttemplate/artistbase.html' %}
+{% block content %}
+<div class="row" style="display:flex;flex-direction:row;gap:15px;margin-left:5px;">
+     {% for i in view %}
+  <div class="card" style="width: 14rem;background-color: rgba(27, 53, 86, 0.703);height:200%;;">
+
+
+  <div class="card-body">
+
+              <img src="{{i.movie_image.url}}"  style="width:218px;height:180px;border-radius:30px;padding:10px;"><br><br>
+<h2 class="card-title" style="color:lightblue;margin-left:29px;">  {{i.movie_name}}</h2><br>
+ <h2 style="margin-left:150px;font-size:50px;color:aqua;">
+                 <a href=" {% url 'mplaylistsongsview' i.id  %} " >
+                 <i class="fa-solid fa-circle-play"></i></a>
+              </h2>
+          <form action="{% url 'movieplaylistdelete' i.id  %}" method="POST">
+            {% csrf_token %}
+            <button style="height:30px;width:80px;" class="btn btn-outline-dark">Delete</button>
+        </form>
+
+        </div>
+
+    </div>
+      {% endfor %}
+
+</div>
+{% endblock %}

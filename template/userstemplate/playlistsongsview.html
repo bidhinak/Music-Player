@@ -7,7 +7,7 @@
     <tr>
         <th scope="col">NO</th>
         <th scope="col">SONG </th>
-        <th scope="col">MOVIE</th>
+<!--        <th scope="col">MOVIE</th>-->
         <th scope="col">PLAY</th>
         <th scope="col">REMOVE</th>
     </tr>
@@ -19,9 +19,11 @@
 
          <td>{{forloop.counter}}</td>
         <td>{{ i.song1.song_name}} </td>
-        <td>{{ i.song1.song_movie}}</td>
+<!--        <td>{{ i.song1.song_singers}}</td>-->
+<!--         <td>{{ i.song1.song}}</td>-->
 
-        <td> <a href=" {% url 'usersongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
+
+        <td> <a href=" {% url 'userplaylistsongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
         <td><form action="{% url 'playlistsongdelete' i.id %}" method="POST" >
                     {% csrf_token %}<button type="submit" >Remove from playlist</button>
                    </form></td>

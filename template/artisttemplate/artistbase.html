@@ -80,6 +80,23 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
+                        <span class="icon paper" aria-hidden="true"></span>Movie Playlist
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href=" {% url 'movieplaylistcreate' %} ">Create</a>
+                        </li>
+                        <li>
+                            <a href=" {% url 'movieplaylistview' %} ">View</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
                         <span class="icon image" aria-hidden="true"></span>Notification
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
@@ -95,31 +112,15 @@
                         </li>
                     </ul>
                 </li>
-<!--                <li>-->
-<!--                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">-->
-<!--                        <span class="icon paper" aria-hidden="true"></span>Pages-->
-<!--                        <span class="category__btn transparent-btn" title="Open list">-->
-<!--                            <span class="sr-only">Open list</span>-->
-<!--                            <span class="icon arrow-down" aria-hidden="true"></span>-->
-<!--                        </span>-->
-<!--                    </a>-->
-<!--                    <ul class="cat-sub-menu">-->
-<!--                        <li>-->
-<!--                            <a href=" {% static 'staticsecond/pages.html' %} ">All pages</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href=" {% static 'staticsecond/new-page.html' %} ">Add new page</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
 
-                <li>
-                    <a href=" {% static 'staticsecond/comments.html' %} ">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Comments
-                    </a>
-<!--                    <span class="msg-counter">7</span>-->
-                </li>
+
+<!--                <li>-->
+<!--                    <a href=" {% static 'staticsecond/comments.html' %} ">-->
+<!--                        <span class="icon message" aria-hidden="true"></span>-->
+<!--                        Comments-->
+<!--                    </a>-->
+<!--&lt;!&ndash;                    <span class="msg-counter">7</span>&ndash;&gt;-->
+<!--                </li>-->
             </ul>
 <!--            <span class="system-menu__title">system</span>-->
 <!--            <ul class="sidebar-body-menu">-->

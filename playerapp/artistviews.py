@@ -1,12 +1,15 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
-from playerapp.forms import Customform, Artistform, songaddform, notificationform
-from playerapp.models import songadd, Artist_Table, notification, Artist_add
+from playerapp.forms import Customform, Artistform, songaddform, notificationform, movieplaylistform, \
+    movieplaylistaddform
+from playerapp.models import songadd, Artist_Table, notification, Artist_add, movieplaylist, movieplaylistadd
 
 
 def artistpage(request):
-    return render(request, 'artisttemplate/artistpage.html')
+    view = songadd.objects.all()
+
+    return render(request, 'artisttemplate/artistpage.html', {"view": view})
 
 
 def artistsignup(request):
@@ -94,18 +97,105 @@ def notview(request):
     view = notification.objects.filter(user=u)
     return render(request, 'artisttemplate/notview.html', {"view": view})
 
-def notupdate(request,id):
-    nget=notification.objects.get(id=id)
-    up=notificationform(instance=nget)
+
+def notupdate(request, id):
+    nget = notification.objects.get(id=id)
+    up = notificationform(instance=nget)
     if request.method == 'POST':
-        up=notificationform(request.POST,instance=nget)
+        up = notificationform(request.POST, instance=nget)
         if up.is_valid():
             up.save()
             return redirect('notview')
-    return render(request,'artisttemplate/notupdate.html',{"up":up})
+    return render(request, 'artisttemplate/notupdate.html', {"up": up})
 
-def notdelete(request,id):
-    delt=notification.objects.get(id=id)
+
+def notdelete(request, id):
+    delt = notification.objects.get(id=id)
     delt.delete()
     messages.info(request, 'notification deleted successfully')
     return redirect('notview')
+
+
+def movieplaylistcreate(request):
+    create = movieplaylistform()
+    u = request.user
+    if request.method == 'POST':
+        create = movieplaylistform(request.POST, request.FILES)
+        if create.is_valid():
+            data = create.save(commit=False)
+            data.artist = u
+            create.save()
+            messages.info(request, 'New movie playlist created successfully')
+    return render(request, 'artisttemplate/movieplaylistcreate.html', {"create": create})
+
+
+def movieplaylistview(request):
+    u = request.user
+    view = movieplaylist.objects.filter(artist=u)
+    return render(request, 'artisttemplate/movieplaylistview.html', {"view": view})
+
+
+def movieplaylistdelete(request, id):
+    delt = movieplaylist.objects.get(id=id)
+    delt.delete()
+    return redirect('movieplaylistview')
+
+
+# def songaddtomplaylist(request, id):
+#     data = songadd.objects.get(id=id)
+#     print(data)
+#     # u = request.user
+#     # print(u)
+#     # z = movieplaylist.objects.filter(artist=u)
+#     # print(z)
+#     add = movieplaylistaddform()
+#     if request.method == 'POST':
+#         add = movieplaylistaddform(request.POST)
+#         if add.exists():
+#             messages.info(request, 'you have already added this song')
+#             return redirect('#')
+#         else:
+#             if add.is_valid():
+#                 v = add.save(commit=False)
+#                 v.song2 = data
+#                 add.save()
+#                 messages.info(request, 'Song added successfully')
+#
+#     return render(request, 'artisttemplate/mplaylistadd.html', {"add": add})
+
+def songaddtomplaylist(request, id):
+    data = songadd.objects.get(id=id)
+    # u = request.user
+    # v = Artist_Table.objects.get(two=u)
+    z = movieplaylistadd.objects.filter( song2=data)
+    if z.exists():
+        messages.info(request, 'You have already added this song')
+        return redirect('artistsongview')
+    else:
+        add = movieplaylistaddform()
+        if request.method == 'POST':
+            add = movieplaylistaddform(request.POST)
+            if add.is_valid():
+                v = add.save(commit=False)
+                v.song2 = data
+                add.save()
+                messages.info(request, 'Song added successfully')
+
+    return render(request, 'artisttemplate/mplaylistadd.html', {"add": add})
+
+
+def mplaylistsongsview(request, id):
+    view = movieplaylistadd.objects.filter(mplaylist_name=id)
+    return render(request, 'artisttemplate/mplaylistsongsview.html', {"view": view})
+
+
+def artistmsongplay(request, id):
+    play = movieplaylistadd.objects.filter(id=id)
+    # print(play)
+    return render(request, 'artisttemplate/artistmsongplay.html', {"play": play})
+
+
+def mplaylistsongdelete(request, id):
+    delt = movieplaylistadd.objects.get(id=id)
+    delt.delete()
+    return redirect('movieplaylistview')

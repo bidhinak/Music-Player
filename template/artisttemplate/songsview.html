@@ -1,6 +1,11 @@
 {% extends 'artisttemplate/artistbase.html' %}
 {% block content %}
 {% load bootstrap5 %}
+{% for message in messages %}
+                <div class="alert alert-success d-flex align-items-center" style="color:white;background:red; " role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
 
 <div class="row" style="display:flex;flex-direction:row;gap:10px;margin-left:5px;">
 
@@ -35,9 +40,7 @@
 
 
                    </form>
-
-
-
+        <a href="{% url 'songaddtomplaylist' i.id %}"><button style="width:100%;height:30px;background-color:lightblue;" >Add song to your movie playlist</button></a>
                            </div>
                </div>
 
