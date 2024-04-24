@@ -1,11 +1,7 @@
 {% extends 'artisttemplate/artistbase.html' %}
 {% block content %}
-{% for message in messages %}
-                <div class="alert alert-danger d-flex align-items-center" style="color:white;background:red; " role="alert">
-                    {{message}}
-                </div>
-                {% endfor %}
-<table class="table" style="width:100%;background:rgba(27, 53, 86, 0.703);color:white;">
+
+<table class="table" style="width:100%;background:rgba(27, 53, 86, 0.703);color:white;text-align:center;">
     <thead class="table table-striped" style="font-size:20px;">
     <tr>
         <th scope="col">NO</th>
@@ -26,10 +22,10 @@
          <td>{{ i.date}} </td>
          <td>{{i.user}}  </td>
         <td>{{i.description}}</td>
-        <td><button style="background:white;color:black;width:65px;height:20px;"><a  href="{% url 'notupdate' i.id %}">Update</a></button></td>
+        <td><button style="background:white;color:black;width:65px;height:20px;"><a  href="{% url 'notupdate' i.id %}"><i class="fa-regular fa-pen-to-square"></i></a></button></td>
 
                   <td><form action="{% url 'notdelete' i.id %}" method="POST" >
-                    {% csrf_token %}<button type="submit" style="width:65px;height:20px;background-color:grey;">Delete</button>
+                    {% csrf_token %}<button type="submit" style="width:65px;height:20px;background-color:grey;"><i class="fa-solid fa-trash"></i></button>
                    </form></td>
 
 
@@ -37,5 +33,11 @@
 
        {% endfor %}
     </tbody>
-</table>
+</table><br>
+<div style="margin-left:300px;">{% for message in messages %}
+                <div class="alert alert-danger d-flex align-items-center" style="color:red;background:rgba(240, 232, 232, 0.536);width:50%;height:50px;padding:20px;text-align:center; border-radius:10px; " role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}</div>
+
 {% endblock %}

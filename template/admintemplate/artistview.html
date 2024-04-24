@@ -1,31 +1,44 @@
-{% extends 'admintemplate/adminbase.html' %}
+ {% extends 'admintemplate/adminbase.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
+<div style="margin-left:300px;">{% for message in messages %}
+                <div class="alert alert-success d-flex align-items-center" style="color:red;background:rgba(240, 232, 232, 0.536);width:50%;height:50px;padding:20px;text-align:center; border-radius:10px;" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}</div>
+<table class="table" style="background-color: rgba(27, 53, 86, 0.703);width:100%;color:white;text-align:center;">
+    <thead class="table table-striped" style="font-size:15px;">
+    <tr>
+        <th scope="col">NO</th>
+        <th scope="col">ARTIST NAME</th>
+        <th scope="col">IMAGE</th>
 
-      <div class="row">
-     {% for i in view %}
-  <div class="card" style="width: 18rem;">
+        <th scope="col">ADD TO LIST</th>
 
 
-    <img src="{{i.artist_image.url}}" style="width:248px;height:180px;border-radius:30px;"><br><br>
-  <div class="card-body">
-            <h2 class="card-title" style="color:lightblue;margin-left:29px;">  {{i.artist_name}}</h2><br>
 
-           <h2 style="margin-left:29px;font-size:50px;color:aqua;">
-               <a href=" {% url 'adminsongsview' %} " >
-               <i class="fa-solid fa-circle-play"></i></a></h2>
 
-    <div>
-        <form action="{% url 'artistdelete' i.id %}" method="POST" >
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-dark">Delete</button>
-            </form>
-    </div>
-        </div>
+         </tr>
+   </thead>
+<tbody >
+{% for i in view %}
+<tr >
+        <td> {{forloop.counter}}</td>
+        <td> {{i.artist_name}} </td>
+    <td><img src="{{i.artist_image.url}}" width="110px" height="130px"/> </td>
+    <td> <a href="{% url 'adminartistadd'  i.id %}" ><i style="font-size:30px;" class="fa-regular fa-square-plus"></i></a></td>
 
-    </div>
-      {% endfor %}
 
-</div>
+
+
+
+{% endfor %}
+
+
+
+</tr>
+
+</tbody>
+</table>
 {% endblock %}
 <script src="https://kit.fontawesome.com/fbff9b201f.js" crossorigin="anonymous"></script>

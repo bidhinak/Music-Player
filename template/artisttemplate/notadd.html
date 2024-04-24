@@ -1,11 +1,7 @@
 {% extends 'artisttemplate/artistbase.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-{% for message in messages %}
-                <div class="alert alert-success d-flex align-items-center" style="color:white;background:green; " role="alert">
-                    {{message}}
-                </div>
-                {% endfor %}
+
 <div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:600px;">
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +17,16 @@
                 <br><input type="submit" class="btn btn-dark btn-block" value="Post"/>
 
             </form>
+
         </div>
-    </div>
+
+    </div><br>
+            <div style="margin-left:500px;">
+{% for message in messages %}
+                <div class="alert alert-success d-flex align-items-center" style="color:green;background:rgba(240, 232, 232, 0.536);width:50%;height:50px;padding:20px;text-align:center; border-radius:10px;" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}</div>
 </div>
+
 {% endblock %}

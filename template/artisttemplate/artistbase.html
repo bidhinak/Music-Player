@@ -49,7 +49,7 @@
 <!--                </li>-->
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span class="icon document" aria-hidden="true"></span>Your Songs
+                        <span style="display:flex;flex-direction:row;gap:18px;"> <i  style="transform:translateY(8px);font-size:20px;" class="fa-solid fa-music" aria-hidden="true"></i> Songs</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -57,16 +57,16 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href=" {% url 'artistaddsong' %} ">Add your song</a>
+                            <a href=" {% url 'artistaddsong' %} ">Add Song</a>
                         </li>
                         <li>
-                            <a href=" {% url 'artistsongview' %} ">View your songs</a>
+                            <a href=" {% url 'artistsongview' %} ">View Songs</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span class="icon folder" aria-hidden="true"></span>Other Songs
+                        <span style="display:flex;flex-direction:row;gap:25px;"><i style="transform:translateY(4px);font-size:20px;" class="fa-solid fa-id-badge" aria-hidden="true"></i>Artist</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -74,13 +74,13 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href=" {% url 'otherartistsongs' %} ">Artists songs</a>
+                            <a href=" {% url 'otherartists' %} ">Artists songs</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span class="icon paper" aria-hidden="true"></span>Movie Playlist
+                        <span style="display:flex;flex-direction:row;gap:18px;"> <i  style="transform:translateY(5px);font-size:20px;" class="fa-solid fa-film" aria-hidden="true"></i> Movie Playlist</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -97,7 +97,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span class="icon image" aria-hidden="true"></span>Notification
+                        <span style="display:flex;flex-direction:row;gap:18px;"> <i  style="transform:translateY(5px);font-size:20px;"  class="fa-regular fa-envelope" aria-hidden="true"></i> Notification</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -185,8 +185,9 @@
   <div class="container main-nav">
     <div class="main-nav-start">
       <div class="search-wrapper">
+          <form method="GET" action="#">
         <i data-feather="search" aria-hidden="true"></i>
-        <input type="text" placeholder="Enter keywords ..." required>
+        <input type="text" placeholder="Enter keywords ..." required></form>
       </div>
     </div>
     <div class="main-nav-end">

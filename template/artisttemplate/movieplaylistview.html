@@ -1,5 +1,55 @@
 {% extends 'artisttemplate/artistbase.html' %}
 {% block content %}
+<style>
+    .box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+</style>
 <div class="row" style="display:flex;flex-direction:row;gap:15px;margin-left:5px;">
      {% for i in view %}
   <div class="card" style="width: 14rem;background-color: rgba(27, 53, 86, 0.703);height:200%;;">
@@ -13,10 +63,22 @@
                  <a href=" {% url 'mplaylistsongsview' i.id  %} " >
                  <i class="fa-solid fa-circle-play"></i></a>
               </h2>
-          <form action="{% url 'movieplaylistdelete' i.id  %}" method="POST">
+
+       <a class="button" href="#popup1_{{i.id}}"><button style="width:65px;height:30px;" class="btn btn-outline-dark"><i class="fa-solid fa-trash"></i></button></a>
+                              <div id="popup1_{{i.id}}" class="overlay">
+                                 <div class="popup">
+                                      <h2>Delete the movie playlist?</h2>
+
+                                          <div style="display:flex;flex-direction:row;gap:30px;padding:10px;margin-left:300px;">
+                                          <a  href="#"><span style="font-size:20px;font-display:bold;">NO</span></a>
+                          <form action="{% url 'movieplaylistdelete' i.id  %}" method="POST">
             {% csrf_token %}
-            <button style="height:30px;width:80px;" class="btn btn-outline-dark">Delete</button>
+                              <button  class="btn btn-outline-dark"><span style="font-size:20px;font-display:bold;">YES</span></button>
         </form>
+                                          </div>
+                                 </div>
+                              </div>
+
 
         </div>
 

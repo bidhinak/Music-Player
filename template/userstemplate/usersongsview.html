@@ -3,16 +3,13 @@
 
 
 
-<table class="table"  style="background-color:lightblue;width:100%;">
+<table class="table"  style="background-color:lightblue;width:100%;text-align:center;">
     <thead class="table table-striped" style="font-size:20px;">
     <tr>
         <th scope="col">NO</th>
         <th scope="col">SONG </th>
-<!--        <th scope="col">Artist</th>-->
-<!--        <th scope="col">MOVIE</th>-->
-<!--        <th scope="col"> SINGERS</th>-->
         <th scope="col">PLAY</th>
-        <th scope="col">ADD</th>
+        <th scope="col">ADD TO YOUR PLAYLIST</th>
 
 
 
@@ -29,13 +26,10 @@
 
          <td>{{forloop.counter}}</td>
         <td>{{ i.song_name}} </td>
-<!--        <td>{{ i.song_movie}}</td>-->
-<!--        <td>{{ i.song_singers }}</td>-->
-<!--         <td>{{i.song}}  </td>-->
-        <td> <a href=" {% url 'usersongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
-      <td><a href="{% url 'userplaylistadd' i.id %}" class="btn btn-outline-dark">Add to your playlist</a></td>
-<!--        <td>{{ i.song_artist }}</td>-->
-<!--        <td>{{j.artist_name }}</td>-->
+
+        <td> <a href=" {% url 'usersongplay' i.id %} " ><i style="color:blue;" class="fa-regular fa-circle-play"></i></a></td>
+      <td><a href="{% url 'userplaylistadd' i.id %}" class="btn btn-outline-dark"><i class="fa-regular fa-square-plus"></i></a></td>
+
 
 
     </tr>

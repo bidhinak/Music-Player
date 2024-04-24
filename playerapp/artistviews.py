@@ -49,10 +49,17 @@ def artistsongview(request):
     # list=zip(show,view)
     return render(request, 'artisttemplate/songsview.html', {"show": show})
 
+def otherartists(request):
+    view=Artist_add.objects.all()
+    return render(request,'artisttemplate/otherartists.html',{"view":view})
 
-def otherartistsongs(request):
-    show = songadd.objects.all()
-    return render(request, 'artisttemplate/otherartistsongs.html', {"show": show})
+def otherartistsongs(request,id):
+    show=songadd.objects.filter(song_artist=id)
+    return render(request,'artisttemplate/otherartistsongs.html',{"show":show})
+
+def otherartistsongplay(request,id):
+    play=songadd.objects.filter(id=id)
+    return render(request,'artisttemplate/otherartistsongplay.html',{"play":play})
 
 
 def songdelete(request, id):
@@ -112,7 +119,7 @@ def notupdate(request, id):
 def notdelete(request, id):
     delt = notification.objects.get(id=id)
     delt.delete()
-    messages.info(request, 'notification deleted successfully')
+    messages.info(request, 'Notification deleted successfully')
     return redirect('notview')
 
 
@@ -172,9 +179,9 @@ def songaddtomplaylist(request, id):
         messages.info(request, 'You have already added this song')
         return redirect('artistsongview')
     else:
-        add = movieplaylistaddform()
+        add = movieplaylistaddform(artist=request.user)
         if request.method == 'POST':
-            add = movieplaylistaddform(request.POST)
+            add = movieplaylistaddform(request.POST,artist=request.user)
             if add.is_valid():
                 v = add.save(commit=False)
                 v.song2 = data
@@ -199,3 +206,14 @@ def mplaylistsongdelete(request, id):
     delt = movieplaylistadd.objects.get(id=id)
     delt.delete()
     return redirect('movieplaylistview')
+
+# def search(request):
+#     if request.method == 'GET': # this will be GET now
+#         show =  request.GET.get('search') # do some research what it does
+#         try:
+#             status = songadd.objects.filter(song_name=show)
+#         except songadd.DoesNotExist:
+#             status=None
+#         return render(request,"artisttemplate/search.html",{"status":status})
+#     else:
+#         return render(request,"artisttemplate/search.html",{})

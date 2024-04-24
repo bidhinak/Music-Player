@@ -47,6 +47,8 @@ class artist_addform(forms.ModelForm):
         fields = "__all__"
 
 
+
+
 class playlistform(forms.ModelForm):
     class Meta:
         model = playlist
@@ -64,7 +66,7 @@ class playlistaddform(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['playlist_name'].queryset = playlistadd.objects.filter(user=user)
+            self.fields['playlist_name'].queryset = playlist.objects.filter(user=user)
 
 class movieplaylistform(forms.ModelForm):
     class Meta:
@@ -77,3 +79,9 @@ class movieplaylistaddform(forms.ModelForm):
         model=movieplaylistadd
         fields="__all__"
         exclude=('artist','song2')
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('artist', None)
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['mplaylist_name'].queryset = movieplaylist.objects.filter(artist=user)

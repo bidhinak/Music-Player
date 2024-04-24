@@ -1,4 +1,30 @@
 {% extends 'admintemplate/adminbase.html' %}
 {% block content %}
 
+<h2 style="color:lightblue;">Hi {{request.user}}  </h2><br>
+<h3 style="color:lightblue;">WELCOME TO MUSIC PLAYER</h3><br><hr><br><br>
+
+<div style="display:flex;flex-direction:row;gap:30px;">
+
+    <div style="background-color: rgba(27, 53, 86, 0.703);opacity:blur(4px);width:35%;height:150px;margin-left:20px;border-radius:10px;">
+
+
+<a href="{% url 'artistview' %}"><div style="display:flex;flex-direction:row;gap:40px;padding:50px;"><i style="font-size:20px;background:lightblue;padding:15px;" class="fa-regular fa-square-plus"></i><p style="font-size:20px;color:lightblue;">Add artist to list</p></div>
+
+    </a></div>
+
+<div style="background-color: rgba(27, 53, 86, 0.703);opacity:blur(4px);width:35%;height:150px;margin-left:50px;border-radius:10px;">
+
+
+<a href="{% url 'adminviewartist' %}"><div style="display:flex;flex-direction:row;gap:50px;padding:50px;"><i style="font-size:20px;background:lightblue;padding:15px;"  class="fa-regular fa-address-card"></i><p style="font-size:20px;color:lightblue;">View artists</p></div>
+
+    </a></div>
+    <div style="background-color: rgba(27, 53, 86, 0.703);opacity:blur(4px);width:35%;height:150px;margin-left:50px;border-radius:10px;">
+
+
+<a href="{% url 'adminartistlist' %}"><div style="display:flex;flex-direction:row;gap:50px;padding:50px;"><i style="font-size:20px;background:lightblue;padding:15px;"  class="fa-regular fa-address-card"></i><p style="font-size:20px;color:lightblue;">View artists list</p></div>
+
+    </a></div>
+    </div>
+
 {% endblock %}

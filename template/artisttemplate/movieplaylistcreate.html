@@ -14,12 +14,12 @@
                     {{create|crispy}}
                 </div>
                 <br><input type="submit" class="btn btn-dark btn-block" value="create"/>
-            </form>
-            {% for message in messages %}
-                <div class="alert alert-success d-flex align-items-center" style="color:white;background:green; " role="alert">
+            </form><br>
+            <div style="margin-left:400px;">{% for message in messages %}
+                <div class="alert alert-success d-flex align-items-center" style="color:green;background:rgba(240, 232, 232, 0.536);width:50%;height:50px;padding:20px;text-align:center; border-radius:10px;" role="alert">
                     {{message}}
                 </div>
-                {% endfor %}
+                {% endfor %}</div>
         </div>
     </div>
 </div>

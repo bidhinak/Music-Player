@@ -2,14 +2,15 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<table class="table"  width="100%" style="background-color:lightblue;">
+
+<table class="table"   style="background-color:lightblue;width:100%;text-align:center;">
     <thead class="table table-striped" style="font-size:20px;">
     <tr>
         <th scope="col">NO</th>
         <th scope="col">SONG </th>
 <!--        <th scope="col">MOVIE</th>-->
         <th scope="col">PLAY</th>
-        <th scope="col">REMOVE</th>
+        <th scope="col">REMOVE FROM PLAYLIST</th>
     </tr>
     </thead>
    <tbody style="background-color:lightblue;font-size:20px;">
@@ -23,9 +24,9 @@
 <!--         <td>{{ i.song1.song}}</td>-->
 
 
-        <td> <a href=" {% url 'userplaylistsongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
+        <td> <a href=" {% url 'userplaylistsongplay' i.id %} " ><i style="color:blue;" class="fa-regular fa-circle-play"></i></a></td>
         <td><form action="{% url 'playlistsongdelete' i.id %}" method="POST" >
-                    {% csrf_token %}<button type="submit" >Remove from playlist</button>
+                    {% csrf_token %}<button type="submit" ><i class="fa-regular fa-trash-can"></i></button>
                    </form></td>
 
 

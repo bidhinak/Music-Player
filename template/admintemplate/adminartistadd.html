@@ -1,16 +1,28 @@
 {% extends 'admintemplate/adminbase.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="card" style="background-color: rgba(27, 53, 86, 0.703);width:100%;padding:40px;color:red;text-align:center;">
-    <h1 style="color:white;">ADD NEW ARTIST</h1><br>
-
-            <form method="POST"  enctype="multipart/form-data">
+<div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:350px;">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h1 style="font-style:bold;color:white;text-align:center;">ADD</h1><br>
+        </div><hr><br>
+        <div class="col">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{add|crispy}}
-
-                <br><br><input class="btn btn-outline-dark" type="submit" value="Add new Artist">
+                <h1>{{add.artist_name}}</h1>
+                <img src="{{ add.artist_image.url }}" alt="" width="350px;" height="150px;">
+                <br><input type="submit" class="btn btn-dark btn-block" value="Add"/>
             </form>
-    </div>
+        </div>
+    </div><br>
+    <div style="margin-left:350px;">{% for message in messages %}
+                <div class="alert alert-success d-flex align-items-center" style="color:green;background:rgba(240, 232, 232, 0.536);width:50%;height:50px;padding:20px;text-align:center; border-radius:10px;" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}</div>
+</div>
+
 
 
 {% endblock %}

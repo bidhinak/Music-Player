@@ -9,7 +9,7 @@ urlpatterns = [
     path("Aloginview", views.Aloginview, name="Aloginview"),
     path("userssignup", usersviews.userssignup, name="userssignup"),
     path("userpage", usersviews.userpage, name="userpage"),
-    path("adminpage", views.adminpage, name="adminpage"),
+    path("adminpage", adminviews.adminpage, name="adminpage"),
     path("artistpage", artistviews.artistpage, name="artistpage"),
     path("aloginpage", artistviews.aloginpage, name="aloginpage"),
     path("artistsignup", artistviews.artistsignup, name="artistsignup"),
@@ -18,16 +18,20 @@ urlpatterns = [
     path("artistsongview", artistviews.artistsongview, name="artistsongview"),
     path("songdelete/<int:id>", artistviews.songdelete, name="songdelete"),
     path("songupdate/<int:id>/", artistviews.songupdate, name="songupdate"),
+    path("otherartists", artistviews.otherartists, name="otherartists"),
+    path("otherartistsongs/<int:id>/", artistviews.otherartistsongs, name="otherartistsongs"),
+    path("otherartistsongplay/<int:id>/",artistviews.otherartistsongplay,name="otherartistsongplay"),
     # admin artist add section
-    path("adminartistadd", adminviews.adminartistadd, name="adminartistadd"),
+    path("adminartistadd/<int:id>/", adminviews.adminartistadd, name="adminartistadd"),
     path("adminartistlist", adminviews.adminartistlist, name="adminartistlist"),
+    path("artistview",adminviews.artistview,name="artistview"),
     path("artistlistdelete/<int:id>/", adminviews.artistlistdelete, name="artistlistdelete"),
     path("adminviewartist", adminviews.adminviewartist, name="adminviewartist"),
     path("adminartistdelete/<int:id>/", adminviews.adminartistdelete, name="adminartistdelete"),
     # adminsongview
     path("adminsongsview/<int:id>/", adminviews.adminsongsview, name="adminsongsview"),
     path("adminsongplay/<int:id>/", adminviews.adminsongplay, name="adminsongplay"),
-    path("otherartistsongs", artistviews.otherartistsongs, name="otherartistsongs"),
+    path("adminsongdelete/<int:id>/",adminviews.adminsongdelete,name="adminsongdelete"),
     # users songs view
     path("userssongsview/<int:id>/", usersviews.userssongsview, name="userssongsview"),
     path("usersongplay/<int:id>/", usersviews.usersongplay, name="usersongplay"),
@@ -49,17 +53,19 @@ urlpatterns = [
     path("userplaylistdelete/<int:id>/", usersviews.userplaylistdelete, name="userplaylistdelete"),
     path("userplaylistadd/<int:id>/", usersviews.userplaylistadd, name="userplaylistadd"),
     path("userplaylistsongsview/<int:id>/", usersviews.userplaylistsongsview, name="userplaylistsongsview"),
-    path("userplaylistsongplay/<int:id>/",usersviews.userplaylistsongplay,name="userplaylistsongplay"),
-    path("playlistsongdelete/<int:id>/",usersviews.playlistsongdelete,name="playlistsongdelete"),
+    path("userplaylistsongplay/<int:id>/", usersviews.userplaylistsongplay, name="userplaylistsongplay"),
+    path("playlistsongdelete/<int:id>/", usersviews.playlistsongdelete, name="playlistsongdelete"),
     # artistmovieplaylist
-    path("movieplaylistcreate",artistviews.movieplaylistcreate,name="movieplaylistcreate"),
-    path("movieplaylistview",artistviews.movieplaylistview,name="movieplaylistview"),
-    path("movieplaylistdelete/<int:id>/",artistviews.movieplaylistdelete,name="movieplaylistdelete"),
-    path("songaddtomplaylist/<int:id>/",artistviews.songaddtomplaylist,name="songaddtomplaylist"),
-    path("mplaylistsongsview/<int:id>/",artistviews.mplaylistsongsview,name="mplaylistsongsview"),
-    path("mplaylistsongdelete/<int:id>/",artistviews.mplaylistsongdelete,name="mplaylistsongdelete"),
-    path("artistmsongplay/<int:id>/",artistviews.artistmsongplay,name="artistmsongplay"),
+    path("movieplaylistcreate", artistviews.movieplaylistcreate, name="movieplaylistcreate"),
+    path("movieplaylistview", artistviews.movieplaylistview, name="movieplaylistview"),
+    path("movieplaylistdelete/<int:id>/", artistviews.movieplaylistdelete, name="movieplaylistdelete"),
+    path("songaddtomplaylist/<int:id>/", artistviews.songaddtomplaylist, name="songaddtomplaylist"),
+    path("mplaylistsongsview/<int:id>/", artistviews.mplaylistsongsview, name="mplaylistsongsview"),
+    path("mplaylistsongdelete/<int:id>/", artistviews.mplaylistsongdelete, name="mplaylistsongdelete"),
+    path("artistmsongplay/<int:id>/", artistviews.artistmsongplay, name="artistmsongplay"),
     # user movie playlist
-    path("usersmplaylist/<int:id>/",usersviews.usersmplaylist,name="usersmplaylist"),
-    path("usermsongplay/<int:id>/",usersviews.usermsongplay,name="usermsongplay")
+    path("usersmplaylist/<int:id>/", usersviews.usersmplaylist, name="usersmplaylist"),
+    path("usermsongplay/<int:id>/", usersviews.usermsongplay, name="usermsongplay"),
+
+    # path("search",artistviews.search,name="search")
 ]

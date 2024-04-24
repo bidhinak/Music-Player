@@ -46,5 +46,4 @@ def Aloginview(request):
     return render(request, 'artisttemplate/aloginpage.html')
 
 
-def adminpage(request):
-    return render(request, 'admintemplate/adminpage.html')
+

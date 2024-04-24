@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.db.models.sql import query
 from django.shortcuts import redirect, render
 
 from playerapp.forms import Customform, Usersform, playlistform, playlistaddform, songaddform
@@ -86,18 +87,14 @@ def userplaylistdelete(request, id):
 
 def userplaylistadd(request, id):
     data = songadd.objects.get(id=id)
-    u = request.user
-    print(u)
-    z = playlist.objects.filter(user=u)
-    print(z)
-    add = playlistaddform()
+    add = playlistaddform(user=request.user)
     if request.method == 'POST':
-        add= playlistaddform(request.POST)
+        add= playlistaddform(request.POST,user=request.user)
         if add.is_valid():
             v = add.save(commit=False)
             v.song1 = data
             add.save()
-            messages.info(request, 'Song added successfully')
+            messages.info(request, 'Added to playlist successfully')
 
     return render(request, 'userstemplate/playlistadd.html', {"add": add})
 
@@ -128,3 +125,12 @@ def usermsongplay(request,id):
     play=movieplaylistadd.objects.filter(id=id)
     # print(play)
     return render(request,'userstemplate/usermsongplay.html',{"play":play})
+
+# def search(ListView):
+#     model=songadd
+#     template_name='userpage.html'
+#     context_object_name='posts'
+#
+#     def get_queryset(self):
+#       query=self.request.GET.get('q')
+#     return songadd.objects.filter(song_name=query)

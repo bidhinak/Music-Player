@@ -1,17 +1,66 @@
 {% extends 'admintemplate/adminbase.html' %}
 {% block content %}
 
+<style>
+    .box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
 
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
 
-<table class="table"  style="background:aqua;width:100%;">
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+</style>
+
+<table class="table"  style="background:aqua;width:100%;text-align:center;">
 <thead class="table table-striped">
 <tr>
         <th scope="col">NO</th>
         <th scope="col">SONG NAME</th>
-        <th scope="col">SONG MOVIE</th>
-        <th scope="col"> SONG</th>
+<!--        <th scope="col">SONG MOVIE</th>-->
+<!--        <th scope="col"> SONG</th>-->
         <th scope="col">PLAY</th>
-    <th scope="col">artist</th>
+<!--    <th scope="col">artist</th>-->
         <th scope="col">DELETE</th>
 
 
@@ -26,15 +75,30 @@
     <tr>
          <td>{{forloop.counter}}</td>
          <td>{{ i.song_name}} </td>
-        <td>{{i.song_movie}}</td>
-         <td>{{i.song}}  </td>
+<!--        <td>{{i.song_movie}}</td>-->
+<!--         <td>{{i.song}}  </td>-->
 
-        <td> <a href=" {% url 'adminsongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
-        <td>{{i.song_artist}}</td>
+        <td> <a href=" {% url 'adminsongplay' i.id %} " ><i style="color:blue;" class="fa-regular fa-circle-play"></i></a></td>
+<!--        <td>{{i.song_artist}}</td>-->
          <td>
-             <form action="{% url 'songdelete' i.id %}" method="POST" >
-            {% csrf_token %}<button type="submit" style="background-color:red;">Delete</button>
+              <a class="button" href="#popup1_{{i.id}}"><button style="width:65px;height:30px;" class="btn btn-outline-dark"><i class="fa-solid fa-trash"></i></button></a>
+                              <div id="popup1_{{i.id}}" class="overlay">
+                                 <div class="popup">
+                                      <h2>Sure want to Delete?</h2>
+
+                                          <div style="display:flex;flex-direction:row;gap:20px;padding:10px;margin-left:300px;">
+                                          <a  href="#"><span style="font-size:20px;font-display:bold;color:black;">NO</span></a>
+                         <form action="{% url 'adminsongdelete' i.id %}" method="POST" >
+            {% csrf_token %}<button type="submit" ><span style="font-size:20px;font-display:bold;color:black;">YES</span></button>
             </form>
+
+                          </div>
+
+
+                      </div>
+                              </div>
+
+
              </td>
 
 

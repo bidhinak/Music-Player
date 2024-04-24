@@ -2,13 +2,13 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<table class="table"  width="100%" style="background-color:lightblue;">
+<table class="table"  width="100%" style="background-color:lightblue;text-align:center;">
     <thead class="table table-striped" style="font-size:20px;">
     <tr>
         <th scope="col">NO</th>
         <th scope="col">SONG </th>
         <th scope="col">PLAY</th>
-        <th scope="col">REMOVE</th>
+        <th scope="col">REMOVE FROM MOVIE PLAYLIST</th>
     </tr>
     </thead>
    <tbody style="background-color:lightblue;font-size:20px;">
@@ -18,10 +18,10 @@
 
          <td>{{forloop.counter}}</td>
         <td>{{ i.song2.song_name}} </td>
-        <td> <a href=" {% url 'artistmsongplay' i.id %} " ><i class="fa-regular fa-circle-play"></i></a></td>
+        <td> <a href=" {% url 'artistmsongplay' i.id %} " ><i style="color:blue;" class="fa-regular fa-circle-play"></i></a></td>
 
       <td><form action="{% url 'mplaylistsongdelete' i.id %}" method="POST" >
-                    {% csrf_token %}<button type="submit" >Remove from movie playlist</button>
+                    {% csrf_token %}<button type="submit" ><i class="fa-regular fa-trash-can"></i></button>
                    </form></td>
 
 

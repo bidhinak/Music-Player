@@ -9,8 +9,8 @@
   <div class="card-body" style="margin-left:80px;" >
       <div style="margin-left:40px;">
            <marquee style="width:300px;"> <h1 class="card-title" style="color:aqua;">{{ i.song_name }}</h1></marquee><br>
-            <h2 class="card-title" style="color:white;">{{i.song_movie}}</h2><br>
-            <h4 class="card-title" style="color:white;">{{i.song_artist}}</h4><br>
+            <h4 class="card-title" style="color:white;">{{i.song_singers}}</h4><br>
+<!--            <h4 class="card-title" style="color:white;">{{i.song_artist}}</h4><br>-->
       </div>
       <div><audio controls style="width:450px;">
     <source  src="{% if i.song %}{{ i.song.url }}{% else %}{{i.song.link}}{%endif%}" type="audio/mp3">

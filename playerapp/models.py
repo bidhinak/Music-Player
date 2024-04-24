@@ -31,13 +31,13 @@ class Artist_Table(models.Model):
 
 class Artist_add(models.Model):
     name = models.ForeignKey(Artist_Table, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="artistimage/")
 
     def __str__(self):
         return str(self.name)
 
 
 class songadd(models.Model):
+    DoesNotExist = None
     song_name = models.CharField(max_length=30)
     song_artist = models.ForeignKey(Artist_add, on_delete=models.CASCADE)
     song_singers = models.CharField(max_length=100)
@@ -79,6 +79,5 @@ class movieplaylistadd(models.Model):
     song2=models.ForeignKey(songadd,on_delete=models.CASCADE)
     mplaylist_name=models.ForeignKey(movieplaylist,on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str(self.song2)
+
 
