@@ -7,15 +7,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music player</title>
+<!--        <link rel="icon" href="1g" type="image/icon type" style="height: 50px;">-->
+
   <!-- Favicon -->
+
   <link rel="shortcut icon" href=" {% static 'staticsecond/img/svg/logo.svg' %} " type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Custom styles -->
   <link rel="stylesheet" href=" {% static 'staticsecond/css/style.min.css' %} ">
 </head>
-
+<style>
+    .main-nav .notification.active::after {
+    display: none;
+}
+</style>
 <body>
+
   <div class="layer"></div>
 <!-- ! Body -->
 <a class="skip-link sr-only" href=" {% static 'staticsecond/#skip-target' %} ">Skip to content</a>
@@ -24,8 +32,8 @@
   <aside class="sidebar">
     <div class="sidebar-start">
         <div class="sidebar-head">
-            <a href=" {% static 'staticsecond/' %} " class="logo-wrapper" title="Home">
-                <span class="sr-only">Home</span>
+            <a href=" {% static 'staticsecond/' %} " class="logo-wrapper" >
+<!--                <span class="sr-only">Home</span>-->
 <!--                <span class="icon logo" aria-hidden="true"></span>-->
                 <div class="logo-text">
                     <span class="logo-title">MusicPlayer</span>
@@ -41,8 +49,10 @@
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
                 <li>
-                    <a class="active" href=" {% url 'adminpage' %} "><span style="margin-left:0px;" class="icon home" aria-hidden="true"></span>Home</a>
+
+                    <a class="active" href=" {% url 'adminpage' %} "><span style="margin-left:0px;" class="icon home" title="Home" aria-hidden="true"></span>Home</a>
                 </li>
+
 <!--                <li>-->
 <!--                    <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">-->
 <!--                        <span style="display:flex;flex-direction:row;gap:20px;"><i style="transform:translateY(4px);font-size:20px;margine-left:80px;" class="fa-solid fa-id-badge" aria-hidden="true"></i>Artist</span>-->
@@ -108,14 +118,14 @@
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </li>-->
-<!--                <li>-->
-<!--                    <a href=" {% url 'adminnotview' %} ">-->
-<!--                        <span class="icon message" aria-hidden="true"></span>-->
-<!--                        Notifications-->
-<!--                    </a>-->
-<!--                    <span class="msg-counter"><i class="fa-solid fa-bell"></i></span>-->
-<!--                </li>-->
+                <li>
+
+                    <button style="background:red;border-radius:10px;width:90px;height:50px;padding-left:17px;"><a href="{% url 'logoutview' %}">
+                        Logout
+                    </a></button>
+                </li>
             </ul>
+
 <!--            <span class="system-menu__title">system</span>-->
 <!--            <ul class="sidebar-body-menu">-->
 <!--                <li>-->
@@ -172,16 +182,18 @@
 <!--            </div>-->
 <!--        </a>-->
 <!--    </div>-->
+
 </aside>
-  <div class="main-wrapper">
+
+  <div style="position: sticky;" class="main-wrapper">
     <!-- ! Main nav -->
-    <nav class="main-nav--bg">
-  <div class="container main-nav">
-    <div class="main-nav-start">
-      <div class="search-wrapper">
-        <i data-feather="search" aria-hidden="true"></i>
-        <input type="text" placeholder="Enter keywords ..." required>
-      </div>
+    <nav  class="main-nav--bg">
+  <div  class="container main-nav" >
+    <div  class="main-nav-start" >
+<!--      <div class="search-wrapper" >-->
+<!--        <i data-feather="search" aria-hidden="true"></i>-->
+<!--        <input type="text" style="border-radius:20px;" placeholder="Enter keywords ..." required>-->
+<!--      </div>-->
     </div>
     <div class="main-nav-end">
       <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
@@ -205,7 +217,7 @@
         <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
       </button>
       <div  class="notification-wrapper">
-        <button   class="gray-circle-btn dropdown-btn" title="To messages" type="button">
+        <button   class="gray-circle-btn dropdown-btn" title="Notifications" type="button">
 <!--           <span class="sr-only">To messages</span>-->
            <a href="{% url 'adminnotview' %}" >
           <span class="icon notification active" aria-hidden="true"></span></a>
@@ -252,36 +264,55 @@
 <!--        </ul>-->
       </div>
       <div class="nav-user-wrapper">
-        <button href=" {% static 'staticsecond/##' %} " class="nav-user-btn dropdown-btn" title="My profile" type="button">
-          <span class="sr-only">My profile</span>
-          <span class="nav-user-img">
-            <picture><source srcse {% static 't="staticsecond/./img/avatar/avatar-illustrat' %} ed-02.webp" type="image/webp"><img src="staticsecond/img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
+        <button  href="# " class="nav-user-btn dropdown-btn" title="{{request.user}}" type="button">
+          <span  class="sr-only"></span>
+          <span style="background-color:crimson;" class="nav-user-img">
+            <picture ><source src="" type="image/webp">{{request.user|make_list|first}}</picture>
           </span>
         </button>
-        <ul class="users-item-dropdown nav-user-dropdown dropdown">
-          <li><a href=" {% static 'staticsecond/##' %} ">
-              <i data-feather="user" aria-hidden="true"></i>
-              <span>Profile</span>
-            </a></li>
-          <li><a href=" {% static 'staticsecond/##' %} ">
-              <i data-feather="settings" aria-hidden="true"></i>
-              <span>Account settings</span>
-            </a></li>
-          <li><a class="danger" href=" {% static 'staticsecond/##' %} ">
-              <i data-feather="log-out" aria-hidden="true"></i>
-              <span>Log out</span>
-            </a></li>
-        </ul>
+<!--        <ul class="users-item-dropdown nav-user-dropdown dropdown">-->
+
+<!--          <li><a class="danger" href="">-->
+<!--              <i data-feather="log-out" aria-hidden="true"></i>-->
+<!--              <span>Log out</span>-->
+<!--            </a></li>-->
+<!--        </ul>-->
       </div>
     </div>
   </div>
 </nav>
+
+
+
+<!--      <div class="main-wrapper">-->
+<!--    &lt;!&ndash; ! Main nav &ndash;&gt;-->
+<!--    <nav class="main-nav&#45;&#45;bg">-->
+<!--  <div class="container main-nav" >-->
+<!--    <div class="main-nav-start" >-->
+
+<!--    </div>-->
+<!--    <div class="main-nav-end">-->
+<!--      <button class="sidebar-toggle transparent-btn" title="Menu" type="button">-->
+<!--        <span class="sr-only">Toggle menu</span>-->
+<!--        <span class="icon menu-toggle&#45;&#45;gray" aria-hidden="true"></span>-->
+<!--      </button>-->
+
+
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+
+
     <!-- ! Main -->
     <main class="main users chart-page" id="skip-target">
       <div class="container">
 <!--        <h2 class="main-title">Dashboard</h2>-->
           {% block content %}
+
           {% endblock %}
+
 <!--        <div class="row stat-cards">-->
 <!--          <div class="col-md-6 col-xl-3">-->
 <!--            <article class="stat-cards-item">-->
@@ -694,6 +725,7 @@
 <!--      <li><a href=" {% static 'staticsecond/##' %} ">Puchase</a></li>-->
 <!--    </ul>-->
 <!--  </div>-->
+
 </footer>
   </div>
 </div>

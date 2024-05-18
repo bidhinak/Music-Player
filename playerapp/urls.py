@@ -20,18 +20,18 @@ urlpatterns = [
     path("songupdate/<int:id>/", artistviews.songupdate, name="songupdate"),
     path("otherartists", artistviews.otherartists, name="otherartists"),
     path("otherartistsongs/<int:id>/", artistviews.otherartistsongs, name="otherartistsongs"),
-    path("otherartistsongplay/<int:id>/",artistviews.otherartistsongplay,name="otherartistsongplay"),
+    path("otherartistsongplay/<int:id>/", artistviews.otherartistsongplay, name="otherartistsongplay"),
     # admin artist add section
     path("adminartistadd/<int:id>/", adminviews.adminartistadd, name="adminartistadd"),
     path("adminartistlist", adminviews.adminartistlist, name="adminartistlist"),
-    path("artistview",adminviews.artistview,name="artistview"),
+    path("artistview", adminviews.artistview, name="artistview"),
     path("artistlistdelete/<int:id>/", adminviews.artistlistdelete, name="artistlistdelete"),
     path("adminviewartist", adminviews.adminviewartist, name="adminviewartist"),
     path("adminartistdelete/<int:id>/", adminviews.adminartistdelete, name="adminartistdelete"),
     # adminsongview
     path("adminsongsview/<int:id>/", adminviews.adminsongsview, name="adminsongsview"),
     path("adminsongplay/<int:id>/", adminviews.adminsongplay, name="adminsongplay"),
-    path("adminsongdelete/<int:id>/",adminviews.adminsongdelete,name="adminsongdelete"),
+    path("adminsongdelete/<int:id>/", adminviews.adminsongdelete, name="adminsongdelete"),
     # users songs view
     path("userssongsview/<int:id>/", usersviews.userssongsview, name="userssongsview"),
     path("usersongplay/<int:id>/", usersviews.usersongplay, name="usersongplay"),
@@ -66,6 +66,11 @@ urlpatterns = [
     # user movie playlist
     path("usersmplaylist/<int:id>/", usersviews.usersmplaylist, name="usersmplaylist"),
     path("usermsongplay/<int:id>/", usersviews.usermsongplay, name="usermsongplay"),
+    # search
+    path("search/", usersviews.search, name="search"),
+    path("searchartist/", artistviews.searchartist, name="searchartist"),
+    # logout
+    path("logoutview", views.logout_view, name="logoutview"),
+    path("Alogoutview",views.Alogout_view,name="Alogoutview")
 
-    # path("search",artistviews.search,name="search")
 ]

@@ -54,14 +54,14 @@
 
  <div class="row" style="display:flex;flex-direction:row;gap:15px;margin-left:5px;">
      {% for i in show %}
-  <div class="card" style="width: 14rem;background-color: rgba(27, 53, 86, 0.703);height:200%;;">
+  <div class="card" style="width: 14rem;background-color: rgba(27, 53, 86, 0.703);justify-content:space-between;">
 
 
-    <img src="{{i.name.artist_image.url}}" style="width:218px;height:180px;border-radius:30px;padding:10px;"><br><br>
+    <img src="{{i.image.url}}" style="width:218px;height:180px;border-radius:30px;padding:10px;"><br><br>
   <div class="card-body">
-            <h2 class="card-title" style="color:lightblue;margin-left:29px;">  {{i.name.artist_name}}</h2><br>
+            <h2 class="card-title" style="color:lightblue;margin-left:29px;">{{i.name}}</h2><br>
 
-           <h2 style="margin-left:29px;font-size:50px;color:aqua;">
+           <h2 style="margin-left:139px;font-size:50px;color:aqua;">
                <a href=" {% url 'adminsongsview' i.id %} " >
                <i class="fa-solid fa-circle-play"></i></a>
            </h2>

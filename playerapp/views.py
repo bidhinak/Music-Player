@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from playerapp.forms import Customform, Usersform
@@ -46,4 +46,13 @@ def Aloginview(request):
     return render(request, 'artisttemplate/aloginpage.html')
 
 
+def logout_view(request):
+    logout(request)
+    request.session.flush()
+    return redirect('homepage')
 
+
+def Alogout_view(request):
+    logout(request)
+    request.session.flush()
+    return redirect('homepage')

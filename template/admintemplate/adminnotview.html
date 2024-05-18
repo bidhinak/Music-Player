@@ -1,6 +1,6 @@
 {% extends 'admintemplate/adminbase.html' %}
 {% block content %}
-<table class="table" style="width:100%;background:rgba(27, 53, 86, 0.703);color:white;text-align:center;">
+<table class="table" style="width:100%;background:rgba(27, 53, 86, 0.703);color:white;text-align:center;border-radius:20px;">
     <thead class="table table-striped" style="font-size:20px;">
     <tr>
         <th scope="col">NO</th>
@@ -15,16 +15,18 @@
    <tbody>
 
         {% for i in view %}
+
+        {% if view  %}
     <tr>
          <td>{{forloop.counter}}</td>
          <td>{{ i.date}} </td>
          <td>{{i.user}}  </td>
         <td>{{i.description}}</td>
-
-
-
     </tr>
 
+        {% else %}
+        <h1>No notification have been yet.</h1>
+      {% endif %}
        {% endfor %}
     </tbody>
 </table>

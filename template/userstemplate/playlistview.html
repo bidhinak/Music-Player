@@ -51,7 +51,7 @@
 }
 </style>
 
-
+{% if view %}
 <div class="row" style="display:flex;flex-direction:row;gap:15px;margin-left:5px;">
      {% for i in view %}
   <div class="card" style="width: 14rem;background-color: rgba(27, 53, 86, 0.703);height:200%;;">
@@ -99,5 +99,8 @@
       {% endfor %}
 
 </div>
+{% else %}
+   <div style="margin:100px;text-align:center;"><h1 style="color:lightblue;font-size:60px;">You have not created a playlist</h1><br><h1 style="color:lightblue;">Create a new one to see here.</h1></div>
+{% endif %}
 {% endblock %}
 <script src="https://kit.fontawesome.com/fbff9b201f.js" crossorigin="anonymous"></script>

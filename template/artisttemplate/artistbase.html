@@ -9,11 +9,16 @@
   <title>Music player</title>
   <!-- Favicon -->
   <link rel="shortcut icon" href=" {% static 'staticsecond/img/svg/logo.svg' %} " type="image/x-icon">
-  <!-- Custom styles -->
+<!--  &lt;!&ndash; Custom styles &ndash;&gt;  <link rel="shortcut icon" href=" images/mp2.png " type="image/icon type">-->
+
   <link rel="stylesheet" href=" {% static 'staticsecond/css/style.min.css' %} ">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
-
+<style>
+    .main-nav .notification.active::after {
+    display: none;
+}
+</style>
 </head>
 
 <body>
@@ -44,12 +49,12 @@
         </div>
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
-<!--                <li>-->
-<!--                    <a class="active" href=" {% static 'staticsecond/' %} "><span class="icon home" aria-hidden="true"></span>Home</a>-->
-<!--                </li>-->
+                <li>
+                    <a class="active" href=" {% url 'artistpage' %} "><span style="margin-left:5px;" class="icon home" aria-hidden="true"></span>Home</a>
+                </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span style="display:flex;flex-direction:row;gap:18px;"> <i  style="transform:translateY(8px);font-size:20px;" class="fa-solid fa-music" aria-hidden="true"></i> Songs</span>
+                        <span style="display:flex;flex-direction:row;gap:18px;margin-left:5px;"> <i  style="transform:translateY(8px);font-size:20px;" class="fa-solid fa-music" aria-hidden="true"></i> Songs</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -59,14 +64,14 @@
                         <li>
                             <a href=" {% url 'artistaddsong' %} ">Add Song</a>
                         </li>
-                        <li>
-                            <a href=" {% url 'artistsongview' %} ">View Songs</a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a href=" # ">View Songs</a>-->
+<!--                        </li>-->
                     </ul>
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span style="display:flex;flex-direction:row;gap:25px;"><i style="transform:translateY(4px);font-size:20px;" class="fa-solid fa-id-badge" aria-hidden="true"></i>Artist</span>
+                        <span style="display:flex;flex-direction:row;gap:20px;margin-left:7px;"><i style="transform:translateY(4px);font-size:20px;" class="fa-solid fa-id-badge" aria-hidden="true"></i>Artist</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -80,7 +85,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span style="display:flex;flex-direction:row;gap:18px;"> <i  style="transform:translateY(5px);font-size:20px;" class="fa-solid fa-film" aria-hidden="true"></i> Movie Playlist</span>
+                        <span style="display:flex;flex-direction:row;gap:18px;margin-left:5px;"> <i  style="transform:translateY(5px);font-size:20px;" class="fa-solid fa-film" aria-hidden="true"></i> Movie Playlist</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -90,14 +95,14 @@
                         <li>
                             <a href=" {% url 'movieplaylistcreate' %} ">Create</a>
                         </li>
-                        <li>
-                            <a href=" {% url 'movieplaylistview' %} ">View</a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a href=" # ">View</a>-->
+<!--                        </li>-->
                     </ul>
                 </li>
                 <li>
                     <a class="show-cat-btn" href=" {% static 'staticsecond/##' %} ">
-                        <span style="display:flex;flex-direction:row;gap:18px;"> <i  style="transform:translateY(5px);font-size:20px;"  class="fa-regular fa-envelope" aria-hidden="true"></i> Notification</span>
+                        <span style="display:flex;flex-direction:row;gap:18px;margin-left:5px;"> <i  style="transform:translateY(5px);font-size:20px;"  class="fa-regular fa-envelope" aria-hidden="true"></i> Notification</span>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -107,9 +112,9 @@
                         <li>
                             <a href=" {% url 'notadd' %} ">Add</a>
                         </li>
-                        <li>
-                            <a href=" {% url 'notview' %} ">View</a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a href=" # ">View</a>-->
+<!--                        </li>-->
                     </ul>
                 </li>
 
@@ -181,13 +186,15 @@
 </aside>
   <div class="main-wrapper">
     <!-- ! Main nav -->
-    <nav class="main-nav--bg">
+    <nav  class="main-nav--bg">
   <div class="container main-nav">
     <div class="main-nav-start">
       <div class="search-wrapper">
-          <form method="GET" action="#">
+           <form action="{% url 'searchartist' %}" method="GET">
+              {% csrf_token %}
         <i data-feather="search" aria-hidden="true"></i>
-        <input type="text" placeholder="Enter keywords ..." required></form>
+        <input type="text"  style="width:700px;border-radius:20px;" name="myform" placeholder="Search here ..." required>
+             </form>
       </div>
     </div>
     <div class="main-nav-end">
@@ -258,10 +265,10 @@
 <!--        </ul>-->
       </div>
       <div class="nav-user-wrapper">
-        <button href=" {% static 'staticsecond/##' %} " class="nav-user-btn dropdown-btn" title="My profile" type="button">
+        <button href=" {% static 'staticsecond/##' %} " class="nav-user-btn dropdown-btn" title="{{request.user}}" type="button">
           <span class="sr-only">My profile</span>
-          <span class="nav-user-img">
-<picture style="color:black;"><i class="fa-solid fa-user"></i></picture>          </span>
+          <span style="background:crimson;" class="nav-user-img">
+<picture style="color:black;">{{request.user|make_list|first}}</picture>          </span>
         </button>
         <ul class="users-item-dropdown nav-user-dropdown dropdown">
           <li><a href=" {% url 'artistprofile' %} ">
@@ -272,7 +279,7 @@
 <!--              <i data-feather="settings" aria-hidden="true"></i>-->
 <!--              <span>Account settings</span>-->
 <!--            </a></li>-->
-          <li><a class="danger" href=" {% static 'staticsecond/##' %} ">
+          <li><a class="danger" href=" {% url 'Alogoutview' %} ">
               <i data-feather="log-out" aria-hidden="true"></i>
               <span>Log out</span>
             </a></li>

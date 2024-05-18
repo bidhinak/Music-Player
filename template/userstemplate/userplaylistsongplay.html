@@ -1,43 +1,396 @@
 {% extends 'userstemplate/userbase.html' %}
 {% block content %}
-<div style="background-color: rgba(27, 53, 86, 0.703);opacity:blur(4px);width:45%;height:550px;margin-left:200px;">
+
+
+<style>
+/* (A) MATERIAL ICONS */
+.aWrap .svg-inline--fa {
+  color: white !important;
+}
+input {
+    border-radius: 6px;
+    background-color: #eff0f6;
+    min-height: 27px;
+    border: solid transparent 2px !important;
+}
+/* (B) WRAPPER */
+.aWrap {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  /* allow buttons to wrap into another row on small screens */
+  /* flex-wrap: wrap; */
+  width: 1000px;
+  padding: 35px 30px;
+  margin: 85px 0 0 150px;
+  border-radius: 10px;
+  background: black;
+  gap: 5rem;
+}
+
+.aWrap,
+.aWrap * {
+  box-sizing: border-box;
+}
+
+/* (C) PLAY/PAUSE BUTTON */
+.aPlay {
+  padding: 0;
+  margin-left: 30px;
+  background: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+
+/* (D) TIME */
+.aCron {
+  font-size: 15px;
+  color: #cbcbcb;
+  margin: 12px 10px 0 10px;
+}
+
+/* (E) RANGE SLIDERS */
+/* (E1) HIDE DEFAULT */
+.aWrap input[type="range"] {
+  appearance: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  width: 550px;
+  padding: 0;
+  margin: 0;
+  background: gray;
+}
+
+.range,
+.range-volume {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top:0px;
+  margin-left:10px;
+
+}
+
+.range input,
+.range-volume input {
+  position: relative;
+  z-index: 1;
+}
+
+.range .change-range,
+.range-volume .change-range {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 6px;
+  width: 0px;
+  background-color: rgb(187, 187, 187);
+  border-radius: 10px 0 0 10px;
+}
+
+.range-volume .change-range {
+  height: 10px;
+  width: 95%;
+}
+
+.under-ranger {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 6px;
+  width: 100%;
+  background-color: rgb(63, 63, 63);
+  border-radius: 10px;
+
+}
+
+.range-volume .under-ranger {
+  height: 10px;
+}
+
+.aWrap input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+}
+
+/* (E2) CUSTOM SLIDER TRACK */
+.aWrap input[type="range"]::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 6px;
+  border-radius: 10px;
+}
+
+/* (E3) CUSTOM SLIDER BUTTON */
+.aWrap input[type="range"]::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  position: relative;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.aWrap input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  position: relative;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+/* (F) VOLUME */
+.aVolIco {
+  margin: 0 0 0 40px;
+  cursor: pointer;
+}
+
+input.aVolume {
+  width: 100px !important;
+}
+
+.aVolume::-webkit-slider-runnable-track {
+  height: 10px !important;
+}
+
+.aVolume::-webkit-slider-thumb {
+  margin-top: -3px !important;
+}
+
+.aVolume::-moz-range-thumb {
+  margin-top: -3px !important;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  color:white;
+}
+
+
+</style>
+
+<div style="background:maroon;height:590px;">
 <div class="card" style="width: 30rem;">
 
           {% for i in play %}
-
-    <img src="{{i.song1.song_image.url}}" style="width:400px;height:310px;padding:40px;margin-left:80px;"><br>
-  <div class="card-body" style="margin-left:80px;" >
-      <div style="margin-left:40px;">
-           <marquee style="width:300px;"> <h1 class="card-title" style="color:aqua;">{{ i.song_name }}</h1></marquee><br>
-            <h2 class="card-title" style="color:white;">{{i.song1.song_movie}}</h2><br>
+<div style="display:flex;flex-direction:row;gap:20px;"><img src="{{i.song1.song_image.url}}" style="border-radius:20px;height:350px;padding:10px;margin-left:140px;"><br>
+  <div class="card-body">
+      <div style="margin-top:150px;">
+           <marquee style="width:500px;"> <h1 class="card-title" style="color:skyblue;">{{ i.song1.song_name }}</h1></marquee><br><br><br><br>
+            <h3 class="card-title" style="color:white;">{{i.song1.song_singers}}</h3><br>
             <h4 class="card-title" style="color:white;">{{i.song1.song_artist}}</h4><br>
       </div>
-      <div><audio controls style="width:450px;">
-    <source  src="{% if i.song1.song %}{{ i.song1.song.url }}{% else %}{{i.song.link}}{%endif%}" type="audio/mp3">
-  </audio></div>
+      </div></div>
 
-    <div>
-<!--      <audio id="player" src="vincent.mp3"></audio>-->
+<!--  <audio controls style="width:450px;">-->
+<!--    <source  src="{% if i.song %}{{ i.song.url }}{% else %}{{i.song.link}}{%endif%}" type="audio/mp3">-->
+<!--  </audio>-->
+<!--            <audio id="player" src="{% if i.song %}{{ i.song.url }}{% else %}{{i.song.link}}{%endif%}" ></audio>-->
 <!--<div>-->
-<!--  <button onclick="document.getElementById('player').play()"><i class="fa-solid fa-play"></i></button>-->
+<!--  <button onclick="document.getElementById('player').play()"><i style="font-size:40px;background:rgba(27, 53, 86, 0.703);" class="fa-solid fa-play"></i></button>-->
 <!--  <button onclick="document.getElementById('player').pause()"><i class="fa-solid fa-pause"></i></button>-->
 <!--  <button onclick="document.getElementById('player').volume += 0.1">Vol +</button>-->
 <!--  <button onclick="document.getElementById('player').volume -= 0.1">Vol -</button>-->
 <!--</div>-->
-    </div>
 
+<!-- (B) AUDIO PLAYERS -->
+<div class="aWrap" data-src="{% if i.song1.song %}{{ i.song1.song.url }}{% else %}{{i.song1.song.link}}{%endif%}" type="audio/mpeg">
+  <button  class="aPlay"  disabled><span  class="aPlayIco"><i style="color:white;font-size:30px;" class="fa fa-play"></i></span></button>
+    <div class="row">
+        <span style="color:white;margin-top:10px;" class="aNow"></span>
+  <div class="range" >
 
+    <span class="under-ranger"></span>
 
-
-
+    <input class="aSeek" type="range" min="0" value="0" step="1" disabled><span class="change-range"></span>
   </div>
+  <div class="aCron">
+     <span  class="aTime"></span>
+  </div>
+  <div class="volume-container">
+    <span class="aVolIco"><i class="fa fa-volume-up"></i></span>
+
+    <div class="range-volume">
+      <span class="under-ranger"></span>
+      <input class="aVolume" type="range" min="0" max="1" value=".75" step="0.1" disabled><span class="change-range"></span>
+    </div>
+  </div>
+        </div>
+</div>
+
+<!--  <audio src="{% if i.song %}{{ i.song.url }}{% else %}{{i.song.link}}{%endif%}" crossorigin="anonymous" ></audio>-->
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
 
 
       {% endfor %}
 
-</div>
-    </div>
 
-   {% endblock %}
-<script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+
 </script>
+<script>
+// Coded by: https://mmzand.ir
+// Credit: https://code-boxx.com/html-custom-audio-player/#sec-audio
+// (A) SUPPORT FUNCTION - FORMAT HH:MM:SS
+var timeString = (secs) => {
+  // (A1) HOURS, MINUTES, SECONDS
+  let ss = Math.floor(secs),
+    hh = Math.floor(ss / 3600),
+    mm = Math.floor((ss - hh * 3600) / 60);
+  ss = ss - hh * 3600 - mm * 60;
+
+  // (A2) RETURN FORMATTED TIME
+  if (hh > 0) {
+    mm = mm < 10 ? "0" + mm : mm;
+  }
+  ss = ss < 10 ? "0" + ss : ss;
+  return hh > 0 ? `${hh}:${mm}:${ss}` : `${mm}:${ss}`;
+};
+
+function setProgress(elTarget) {
+  let divisionNumber = elTarget.getAttribute("max") / 100;
+  let rangeNewWidth = Math.floor(elTarget.value / divisionNumber);
+  if (rangeNewWidth > 95) {
+    elTarget.nextSibling.style.width = "95%";
+  } else {
+    elTarget.nextSibling.style.width = rangeNewWidth + "%";
+  }
+}
+
+for (let i of document.querySelectorAll(".aWrap")) {
+  // (B) AUDIO + HTML SETUP + FLAGS
+  i.audio = new Audio(encodeURI(i.dataset.src));
+  (i.aPlay = i.querySelector(".aPlay")),
+    (i.aPlayIco = i.querySelector(".aPlayIco")),
+    (i.aNow = i.querySelector(".aNow")),
+    (i.aTime = i.querySelector(".aTime")),
+    (i.aSeek = i.querySelector(".aSeek")),
+    (i.aVolume = i.querySelector(".aVolume")),
+    (i.aVolIco = i.querySelector(".aVolIco"));
+  i.seeking = false; // user is dragging the seek bar
+
+  // (C) PLAY & PAUSE
+  // (C1) CLICK TO PLAY/PAUSE
+  i.aPlay.onclick = () => {
+    if (i.audio.paused) {
+      i.audio.play();
+    } else {
+      i.audio.pause();
+    }
+  };
+
+  // (C2) SET PLAY/PAUSE ICON
+  i.audio.onplay = () => (i.aPlayIco.innerHTML = '<i style="color:white;font-size:30px;" class="fa fa-pause"></i>');
+  i.audio.onpause = () => (i.aPlayIco.innerHTML = '<i style="color:white;font-size:30px;" class="fa fa-play"></i>');
+
+  // (D) TRACK PROGRESS & SEEK TIME
+  // (D1) TRACK LOADING
+  i.audio.onloadstart = () => {
+    i.aNow.innerHTML = "Loading";
+    i.aTime.innerHTML = "";
+  };
+
+  // (D2) ON META LOADED
+  i.audio.onloadedmetadata = () => {
+    // (D2-1) INIT SET TRACK TIME
+    i.aNow.innerHTML = timeString(0);
+    i.aTime.innerHTML = timeString(i.audio.duration);
+
+    // (D2-2) SET SEEK BAR MAX TIME
+    i.aSeek.max = Math.floor(i.audio.duration);
+
+    // (D2-3) USER CHANGE SEEK BAR TIME
+    i.aSeek.oninput = () => (i.seeking = true); // prevents clash with (d2-4)
+    i.aSeek.onchange = () => {
+      i.audio.currentTime = i.aSeek.value;
+      if (!i.audio.paused) {
+        i.audio.play();
+      }
+      i.seeking = false;
+    };
+
+    // (D2-4) UPDATE SEEK BAR ON PLAYING
+    i.audio.ontimeupdate = () => {
+      if (!i.seeking) {
+        i.aSeek.value = Math.floor(i.audio.currentTime);
+      }
+      i.aNow.innerHTML = timeString(i.audio.currentTime);
+      let divisionNumber = i.aSeek.getAttribute("max") / 100;
+      let rangeNewWidth = Math.floor(i.aSeek.value / divisionNumber);
+      if (rangeNewWidth > 95) {
+        i.aSeek.nextSibling.style.width = "95%";
+      } else {
+        i.aSeek.nextSibling.style.width = rangeNewWidth + "%";
+      }
+    };
+  };
+
+  // (E) VOLUME
+  i.aVolIco.onclick = () => {
+    i.audio.volume = i.audio.volume == 0 ? 1 : 0;
+    i.aVolume.value = i.audio.volume;
+    i.aVolIco.innerHTML =
+      i.aVolume.value == 0
+        ? '<i class="fa fa-volume-off"></i>'
+        : '<i class="fa fa-volume-up"></i>';
+    if (i.aVolume.value == 0) {
+      i.aVolume.nextSibling.style.width = "0%";
+    } else {
+      i.aVolume.nextSibling.style.width = "95%";
+    }
+  };
+  i.aVolume.onchange = () => {
+    i.audio.volume = i.aVolume.value;
+    i.aVolIco.innerHTML =
+      i.aVolume.value == 0
+        ? '<i class="fa fa-volume-off"></i>'
+        : '<i class="fa fa-volume-up"></i>';
+  };
+
+  // (F) ENABLE/DISABLE CONTROLS
+  i.audio.oncanplaythrough = () => {
+    i.aPlay.disabled = false;
+    i.aVolume.disabled = false;
+    i.aSeek.disabled = false;
+  };
+  i.audio.onwaiting = () => {
+    i.aPlay.disabled = true;
+    i.aVolume.disabled = true;
+    i.aSeek.disabled = true;
+  };
+
+  i.aSeek.addEventListener("input", function () {
+    setProgress(this);
+  });
+
+  i.aVolume.addEventListener("input", function () {
+    setProgress(this);
+  });
+}
+
+
+</script>
+
+
+{% endblock %}

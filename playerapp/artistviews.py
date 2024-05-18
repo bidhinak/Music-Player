@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from playerapp.forms import Customform, Artistform, songaddform, notificationform, movieplaylistform, \
@@ -33,6 +34,7 @@ def aloginpage(request):
     return render(request, 'artisttemplate/aloginpage.html')
 
 
+@login_required(login_url='/Alogout_view/')
 def artistaddsong(request):
     view = songaddform()
     if request.method == "POST":
@@ -43,31 +45,40 @@ def artistaddsong(request):
     return render(request, 'artisttemplate/addsong.html', {"view": view})
 
 
+@login_required(login_url='/Alogout_view/')
 def artistsongview(request):
     show = songadd.objects.all()
     # view=Artist_add.objects.all()
     # list=zip(show,view)
     return render(request, 'artisttemplate/songsview.html', {"show": show})
 
+
+@login_required(login_url='/Alogout_view/')
 def otherartists(request):
-    view=Artist_add.objects.all()
-    return render(request,'artisttemplate/otherartists.html',{"view":view})
-
-def otherartistsongs(request,id):
-    show=songadd.objects.filter(song_artist=id)
-    return render(request,'artisttemplate/otherartistsongs.html',{"show":show})
-
-def otherartistsongplay(request,id):
-    play=songadd.objects.filter(id=id)
-    return render(request,'artisttemplate/otherartistsongplay.html',{"play":play})
+    view = Artist_add.objects.all()
+    return render(request, 'artisttemplate/otherartists.html', {"view": view})
 
 
+@login_required(login_url='/Alogout_view/')
+def otherartistsongs(request, id):
+    show = songadd.objects.filter(song_artist=id)
+    return render(request, 'artisttemplate/otherartistsongs.html', {"show": show})
+
+
+@login_required(login_url='/Alogout_view/')
+def otherartistsongplay(request, id):
+    play = songadd.objects.filter(id=id)
+    return render(request, 'artisttemplate/otherartistsongplay.html', {"play": play})
+
+
+@login_required(login_url='/Alogout_view/')
 def songdelete(request, id):
     delt = songadd.objects.get(id=id)
     delt.delete()
     return redirect('artistsongview')
 
 
+@login_required(login_url='/Alogout_view/')
 def songupdate(request, id):
     show = songadd.objects.get(id=id)
     upd = songaddform(instance=show)
@@ -79,12 +90,14 @@ def songupdate(request, id):
     return render(request, 'artisttemplate/songupdate.html', {"upd": upd})
 
 
+@login_required(login_url='/Alogout_view/')
 def artistprofile(request):
     u = request.user
     prof = Artist_Table.objects.get(two=u)
     return render(request, 'artisttemplate/artistprofile.html', {"prof": prof})
 
 
+@login_required(login_url='/Alogout_view/')
 def notadd(request):
     add = notificationform()
     user1 = request.user
@@ -99,12 +112,14 @@ def notadd(request):
     return render(request, 'artisttemplate/notadd.html', {"add": add})
 
 
+@login_required(login_url='/Alogout_view/')
 def notview(request):
     u = request.user.id
     view = notification.objects.filter(user=u)
     return render(request, 'artisttemplate/notview.html', {"view": view})
 
 
+@login_required(login_url='/Alogout_view/')
 def notupdate(request, id):
     nget = notification.objects.get(id=id)
     up = notificationform(instance=nget)
@@ -116,6 +131,7 @@ def notupdate(request, id):
     return render(request, 'artisttemplate/notupdate.html', {"up": up})
 
 
+@login_required(login_url='/Alogout_view/')
 def notdelete(request, id):
     delt = notification.objects.get(id=id)
     delt.delete()
@@ -123,6 +139,7 @@ def notdelete(request, id):
     return redirect('notview')
 
 
+@login_required(login_url='/Alogout_view/')
 def movieplaylistcreate(request):
     create = movieplaylistform()
     u = request.user
@@ -136,12 +153,14 @@ def movieplaylistcreate(request):
     return render(request, 'artisttemplate/movieplaylistcreate.html', {"create": create})
 
 
+@login_required(login_url='/Alogout_view/')
 def movieplaylistview(request):
     u = request.user
     view = movieplaylist.objects.filter(artist=u)
     return render(request, 'artisttemplate/movieplaylistview.html', {"view": view})
 
 
+@login_required(login_url='/Alogout_view/')
 def movieplaylistdelete(request, id):
     delt = movieplaylist.objects.get(id=id)
     delt.delete()
@@ -169,19 +188,19 @@ def movieplaylistdelete(request, id):
 #                 messages.info(request, 'Song added successfully')
 #
 #     return render(request, 'artisttemplate/mplaylistadd.html', {"add": add})
-
+@login_required(login_url='/Alogout_view/')
 def songaddtomplaylist(request, id):
     data = songadd.objects.get(id=id)
     # u = request.user
     # v = Artist_Table.objects.get(two=u)
-    z = movieplaylistadd.objects.filter( song2=data)
+    z = movieplaylistadd.objects.filter(song2=data)
     if z.exists():
         messages.info(request, 'You have already added this song')
         return redirect('artistsongview')
     else:
         add = movieplaylistaddform(artist=request.user)
         if request.method == 'POST':
-            add = movieplaylistaddform(request.POST,artist=request.user)
+            add = movieplaylistaddform(request.POST, artist=request.user)
             if add.is_valid():
                 v = add.save(commit=False)
                 v.song2 = data
@@ -191,21 +210,25 @@ def songaddtomplaylist(request, id):
     return render(request, 'artisttemplate/mplaylistadd.html', {"add": add})
 
 
+@login_required(login_url='/Alogout_view/')
 def mplaylistsongsview(request, id):
     view = movieplaylistadd.objects.filter(mplaylist_name=id)
     return render(request, 'artisttemplate/mplaylistsongsview.html', {"view": view})
 
 
+@login_required(login_url='/Alogout_view/')
 def artistmsongplay(request, id):
     play = movieplaylistadd.objects.filter(id=id)
     # print(play)
     return render(request, 'artisttemplate/artistmsongplay.html', {"play": play})
 
 
+@login_required(login_url='/Alogout_view/')
 def mplaylistsongdelete(request, id):
     delt = movieplaylistadd.objects.get(id=id)
     delt.delete()
     return redirect('movieplaylistview')
+
 
 # def search(request):
 #     if request.method == 'GET': # this will be GET now
@@ -217,3 +240,14 @@ def mplaylistsongdelete(request, id):
 #         return render(request,"artisttemplate/search.html",{"status":status})
 #     else:
 #         return render(request,"artisttemplate/search.html",{})
+@login_required(login_url='/Alogout_view/')
+def searchartist(request):
+    if request.GET.get('myform'):  # write your form name here
+        item = request.GET.get('myform')
+        try:
+            status = songadd.objects.filter(song_name__icontains=item)
+            return render(request, "artisttemplate/artistsearch.html", {"view": status})
+        except:
+            return render(request, "artisttemplate/artistsearch.html")
+    else:
+        return render(request, 'artisttemplate/artistsearch.html')

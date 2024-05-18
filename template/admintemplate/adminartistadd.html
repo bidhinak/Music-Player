@@ -1,26 +1,23 @@
 {% extends 'admintemplate/adminbase.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:350px;">
-    <div class="row">
-        <div class="col-md-12">
-            <br>
-            <h1 style="font-style:bold;color:white;text-align:center;">ADD</h1><br>
-        </div><hr><br>
-        <div class="col">
-            <form method="POST" enctype="multipart/form-data">
+
+<div style="background:rgba(27, 53, 86, 0.703);width:70%;margin-left:200px; height:400px;padding:0 150px 0 150px;">
+
+    <h1 style="text-align:center;color:white;">ADD ARTIST TO THE LIST</h1><br>
+
+
+<div class="card" style="text-align:center;">
+            <form method="POST"  enctype="multipart/form-data">
                 {% csrf_token %}
-                <h1>{{add.artist_name}}</h1>
-                <img src="{{ add.artist_image.url }}" alt="" width="350px;" height="150px;">
-                <br><input type="submit" class="btn btn-dark btn-block" value="Add"/>
+                <div style="display:flex;flex-direction:column;gap:20px;color:skyblue;">
+                {{add}}
+                  </div>
+
+                <br><br><input class="btn btn-outline-dark" type="submit" value="Add to the list">
             </form>
-        </div>
-    </div><br>
-    <div style="margin-left:350px;">{% for message in messages %}
-                <div class="alert alert-success d-flex align-items-center" style="color:green;background:rgba(240, 232, 232, 0.536);width:50%;height:50px;padding:20px;text-align:center; border-radius:10px;" role="alert">
-                    {{message}}
-                </div>
-                {% endfor %}</div>
+    </div>
+
 </div>
 
 

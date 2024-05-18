@@ -1,4 +1,29 @@
 {% extends 'artisttemplate/artistbase.html' %}
 {% block content %}
-<h1>WRITE SOMETHING</h1>
+
+<h2 style="color:lightblue;">Hi {{request.user}}  </h2><br>
+<h3 style="color:lightblue;">WELCOME TO MUSIC PLAYER</h3><br><hr><br><br>
+
+<div style="display:flex;flex-direction:row;gap:30px;">
+
+    <div style="background-color: rgba(27, 53, 86, 0.703);opacity:blur(4px);width:35%;height:150px;margin-left:20px;border-radius:10px;">
+
+
+<a href="{% url 'artistsongview' %}"><div style="display:flex;flex-direction:row;gap:40px;padding:50px;"><i style="font-size:20px;background:lightblue;padding:15px;"  class="fa-regular fa-file-audio"></i><p style="font-size:20px;color:lightblue;">Your songs</p></div>
+
+    </a></div>
+
+<div style="background-color: rgba(27, 53, 86, 0.703);opacity:blur(4px);width:35%;height:150px;margin-left:50px;border-radius:10px;">
+
+
+<a href="{% url 'movieplaylistview' %}"><div style="display:flex;flex-direction:row;gap:35px;padding:50px;"><i style="font-size:20px;background:lightblue;padding:15px;"   class="fa-solid fa-file-video"></i><p style="font-size:20px;color:lightblue;">Movie playlist</p></div>
+
+    </a></div>
+    <div style="background-color: rgba(27, 53, 86, 0.703);opacity:blur(4px);width:35%;height:150px;margin-left:50px;border-radius:10px;">
+
+
+<a href="{% url 'notview' %}"><div style="display:flex;flex-direction:row;gap:50px;padding:50px;"><i style="font-size:20px;background:lightblue;padding:15px;"   class="fa-solid fa-bell"></i><p style="font-size:20px;color:lightblue;">Notifications</p></div>
+
+    </a></div>
+    </div>
 {% endblock %}

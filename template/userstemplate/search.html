@@ -1,0 +1,44 @@
+{% extends 'userstemplate/userbase.html' %}
+{% block content %}
+
+{% if view %}
+
+           <table class="table"  style="background-color:lightblue;width:100%;text-align:center;border-radius:5px;">
+    <thead class="table table-striped" style="font-size:20px;">
+    <tr>
+        <th scope="col">NO</th>
+        <th scope="col">SONG </th>
+        <th scope="col">PLAY</th>
+        <th scope="col">ADD TO YOUR PLAYLIST</th>
+
+
+
+
+
+    </tr>
+    </thead>
+   <tbody style="background-color:lightblue;font-size:20px;">
+       {% for i in view %}
+
+
+
+    <tr style="height:25px;">
+
+         <td>{{forloop.counter}}</td>
+        <td>{{ i.song_name}} </td>
+
+        <td> <a href=" {% url 'usersongplay' i.id %} " ><i style="color:blue;" class="fa-regular fa-circle-play"></i></a></td>
+      <td><a href="{% url 'userplaylistadd' i.id %}" class="btn btn-outline-dark"><i class="fa-regular fa-square-plus"></i></a></td>
+
+
+
+    </tr>
+
+   {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div style="background:rgba(240, 232, 232, 0.536);width:50%;height:30px;padding:35px;text-align:center;border-radius:10px;margin:250px;padding-bottom:45px;"><h3 style="color:black;">No item Found</h3></div>
+
+{% endif %}
+{% endblock %}

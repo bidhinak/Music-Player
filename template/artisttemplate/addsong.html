@@ -2,16 +2,16 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div style="background:rgba(27, 53, 86, 0.703); height:500px;">
+<div style="background:rgba(27, 53, 86, 0.703); height:600px;margin-left:300px;text-align:center;width:50%;padding:0 60px 0 60px;">
 
     <h1 style="text-align:center;color:white;">Add Your Song Here</h1><br>
 
 
-<div class="card" style="text-align:center;">
+<div class="card" style="">
             <form method="POST"  enctype="multipart/form-data">
                 {% csrf_token %}
-                <div style="display:flex;flex-direction:column;gap:10px;">
-                {{view|crispy}}
+                <div style="display:flex;flex-direction:column;gap:16px;color:skyblue;">
+                {{view}}
                   </div>
 
                 <br><input class="btn btn-outline-dark" type="submit" value="Add to the list">

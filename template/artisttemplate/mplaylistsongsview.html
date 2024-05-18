@@ -1,8 +1,8 @@
 {% extends 'artisttemplate/artistbase.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-
-<table class="table"  width="100%" style="background-color:lightblue;text-align:center;">
+{% if view %}
+<table class="table"  width="100%" style="background-color:lightblue;text-align:center;border-radius:6px;">
     <thead class="table table-striped" style="font-size:20px;">
     <tr>
         <th scope="col">NO</th>
@@ -11,6 +11,8 @@
         <th scope="col">REMOVE FROM MOVIE PLAYLIST</th>
     </tr>
     </thead>
+
+
    <tbody style="background-color:lightblue;font-size:20px;">
    {% for i  in view %}
 
@@ -26,8 +28,14 @@
 
 
     </tr>
+    {% endfor %}
 
-   {% endfor %}
-    </tbody>
-</table>
+</tbody>
+
+    </table>
+ {% else %}
+   <div style="margin:100px;text-align:center;"><h1 style="color:lightblue;font-size:60px;">Movie playlist is empty </h1><br><h1 style="color:lightblue;">Add your song to view here.</h1></div>
+   {% endif %}
+
+
 {% endblock %}

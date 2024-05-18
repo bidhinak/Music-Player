@@ -2,7 +2,7 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:600px;">
+<div class="container" style="background:rgba(27, 53, 86, 0.703);text-align:center; height:500px;width:70%;padding:0 120px 0 120px;">
     <div class="row">
         <div class="col-md-12">
             <br>
@@ -11,8 +11,8 @@
         <div class="col">
             <form method="POST" >
                 {% csrf_token %}
-                <div style="display:flex;flex-direction:column;gap:10px;">
-                    {{add|crispy}}
+                <div style="display:flex;flex-direction:column;gap:10px;color:skyblue;">
+                    {{add}}
                 </div>
                 <br><input type="submit" class="btn btn-dark btn-block" value="Post"/>
 
@@ -21,9 +21,9 @@
         </div>
 
     </div><br>
-            <div style="margin-left:500px;">
+            <div style="margin-left:200px;">
 {% for message in messages %}
-                <div class="alert alert-success d-flex align-items-center" style="color:green;background:rgba(240, 232, 232, 0.536);width:50%;height:50px;padding:20px;text-align:center; border-radius:10px;" role="alert">
+                <div class="alert alert-success d-flex align-items-center" style="color:green;background:rgba(240, 232, 232, 0.536);width:70%;height:50px;padding:20px;text-align:center; border-radius:10px;" role="alert">
                     {{message}}
                 </div>
                 {% endfor %}</div>

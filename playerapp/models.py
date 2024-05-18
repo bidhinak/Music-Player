@@ -31,6 +31,7 @@ class Artist_Table(models.Model):
 
 class Artist_add(models.Model):
     name = models.ForeignKey(Artist_Table, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="artistimage/")
 
     def __str__(self):
         return str(self.name)
@@ -55,7 +56,7 @@ class notification(models.Model):
 
 
 class playlist(models.Model):
-    user=models.ForeignKey(Login,on_delete=models.CASCADE)
+    user = models.ForeignKey(Login, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to="playlist/", default="playlist/default.png", blank=True)
 
@@ -64,20 +65,19 @@ class playlist(models.Model):
 
 
 class playlistadd(models.Model):
-    song1 = models.ForeignKey(songadd,on_delete=models.CASCADE)
+    song1 = models.ForeignKey(songadd, on_delete=models.CASCADE)
     playlist_name = models.ForeignKey(playlist, on_delete=models.CASCADE)
 
+
 class movieplaylist(models.Model):
-    artist=models.ForeignKey(Login,on_delete=models.CASCADE)
-    movie_name=models.CharField(max_length=150)
-    movie_image=models.ImageField(upload_to="movies/")
+    artist = models.ForeignKey(Login, on_delete=models.CASCADE)
+    movie_name = models.CharField(max_length=150)
+    movie_image = models.ImageField(upload_to="movies/")
 
     def __str__(self):
         return str(self.movie_name)
 
+
 class movieplaylistadd(models.Model):
-    song2=models.ForeignKey(songadd,on_delete=models.CASCADE)
-    mplaylist_name=models.ForeignKey(movieplaylist,on_delete=models.CASCADE)
-
-
-
+    song2 = models.ForeignKey(songadd, on_delete=models.CASCADE)
+    mplaylist_name = models.ForeignKey(movieplaylist, on_delete=models.CASCADE)
