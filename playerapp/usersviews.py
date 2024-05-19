@@ -46,6 +46,8 @@ def usersongplay(request, id):
     return render(request, 'userstemplate/usersongplay.html', {"play": play})
 
 
+
+
 @login_required(login_url='/Login_view/')
 def playbymovies(request):
     view = movieplaylist.objects.all()

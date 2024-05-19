@@ -19,6 +19,7 @@
     .main-nav .notification.active::after {
     display: none;
 }
+
 </style>
 </head>
 
@@ -292,12 +293,24 @@
     </div>
   </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
     <!-- ! Main -->
     <main class="main users chart-page" id="skip-target">
       <div class="container">
 <!--        <h2 class="main-title">Dashboard</h2>-->
+
           {% block content %}
           {% endblock %}
+
 <!--        <div class="row stat-cards">-->
 <!--          <div class="col-md-6 col-xl-3">-->
 <!--            <article class="stat-cards-item">-->
@@ -720,5 +733,6 @@
 <!-- Custom scripts -->
 <script src=" {% static 'staticsecond/js/script.js' %} "></script>
 </body>
+
 
 </html>
